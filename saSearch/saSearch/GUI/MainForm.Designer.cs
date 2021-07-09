@@ -48,13 +48,13 @@ namespace saSearch
             this.mainMenuStrip.Size = new System.Drawing.Size(800, 28);
             this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "menuStrip1";
-            this.mainMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainMenuStrip_ItemClicked);
             // 
             // toolStripSubir
             // 
             this.toolStripSubir.Name = "toolStripSubir";
             this.toolStripSubir.Size = new System.Drawing.Size(57, 24);
             this.toolStripSubir.Text = "&Subir";
+            this.toolStripSubir.Click += new System.EventHandler(this.toolStripSubir_Click);
             // 
             // toolStripVer
             // 

@@ -23,7 +23,7 @@ namespace saSearch
 
         }
 
-        private void mainMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void toolStripSubir_Click(object sender, EventArgs e)
         {
             SubirArchivoForm form = new SubirArchivoForm();
             form.Show();
