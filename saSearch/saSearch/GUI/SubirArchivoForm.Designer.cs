@@ -130,6 +130,7 @@ namespace saSearch.GUI
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox1);
             this.Name = "SubirArchivoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SubirArchivoForm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
