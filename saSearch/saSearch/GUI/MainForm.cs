@@ -1,4 +1,5 @@
-﻿using System;
+﻿using saSearch.GUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,12 @@ namespace saSearch
         private void toolStripVer_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void mainMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            SubirArchivoForm form = new SubirArchivoForm();
+            form.Show();
         }
     }
 }
