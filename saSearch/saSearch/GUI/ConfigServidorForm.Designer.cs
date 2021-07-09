@@ -81,7 +81,7 @@ namespace saSearch.GUI
             this.Controls.Add(this.gbxConfigServidor);
             this.Name = "ConfigServidorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ConfigServidorForm";
+            this.Text = "Configuración servidor";
             this.gbxConfigServidor.ResumeLayout(false);
             this.gbxConfigServidor.PerformLayout();
             this.ResumeLayout(false);

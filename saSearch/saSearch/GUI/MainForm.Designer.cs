@@ -79,7 +79,7 @@ namespace saSearch
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mainForm";
+            this.Text = "Menu principal";
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
