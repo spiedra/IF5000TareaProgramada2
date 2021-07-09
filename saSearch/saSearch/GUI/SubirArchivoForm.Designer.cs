@@ -32,9 +32,9 @@ namespace saSearch.GUI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_tamano = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_nombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -66,9 +66,9 @@ namespace saSearch.GUI
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.tb_tamano);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tb_nombre);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(40, 121);
             this.groupBox2.Name = "groupBox2";
@@ -77,13 +77,13 @@ namespace saSearch.GUI
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Archivo seleccionado";
             // 
-            // textBox2
+            // tb_tamano
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(137, 100);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(423, 30);
-            this.textBox2.TabIndex = 4;
+            this.tb_tamano.Enabled = false;
+            this.tb_tamano.Location = new System.Drawing.Point(137, 100);
+            this.tb_tamano.Name = "tb_tamano";
+            this.tb_tamano.Size = new System.Drawing.Size(423, 30);
+            this.tb_tamano.TabIndex = 4;
             // 
             // label2
             // 
@@ -94,13 +94,13 @@ namespace saSearch.GUI
             this.label2.TabIndex = 3;
             this.label2.Text = "Tamaño:";
             // 
-            // textBox1
+            // tb_nombre
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(137, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(423, 30);
-            this.textBox1.TabIndex = 2;
+            this.tb_nombre.Enabled = false;
+            this.tb_nombre.Location = new System.Drawing.Point(137, 39);
+            this.tb_nombre.Name = "tb_nombre";
+            this.tb_nombre.Size = new System.Drawing.Size(423, 30);
+            this.tb_nombre.TabIndex = 2;
             // 
             // label1
             // 
@@ -145,8 +145,8 @@ namespace saSearch.GUI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_tamano;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_nombre;
     }
 }

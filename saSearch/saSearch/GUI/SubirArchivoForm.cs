@@ -36,6 +36,10 @@ namespace saSearch.GUI
                     filePath = openFileDialog.FileName;
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
+                    FileInfo file = new FileInfo(openFileDialog.FileName);
+                    tb_nombre.Text = openFileDialog.FileName.ToString();
+                    tb_tamano.Text = Convert.ToString(file.Length)+" bytes";
+                   
 
                     using (StreamReader reader = new StreamReader(fileStream))
                     {
