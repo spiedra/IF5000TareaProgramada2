@@ -20,13 +20,19 @@ namespace saSearch
 
         private void toolStripVer_Click(object sender, EventArgs e)
         {
+            SubirArchivoForm form = new SubirArchivoForm();
+            form.Show();
+        }
 
+        private void toolStripConfig_Click(object sender, EventArgs e)
+        {
+            ConfigServidorForm configServidorForm = new();
+            configServidorForm.Show();
         }
 
         private void toolStripSubir_Click(object sender, EventArgs e)
         {
-            SubirArchivoForm form = new SubirArchivoForm();
-            form.Show();
+           
         }
     }
 }

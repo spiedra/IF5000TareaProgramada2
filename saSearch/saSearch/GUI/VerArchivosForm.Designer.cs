@@ -29,37 +29,51 @@ namespace saSearch.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.gbxListaArchivos = new System.Windows.Forms.GroupBox();
+            this.dgvListaArchivos = new System.Windows.Forms.DataGridView();
+            this.gbxListaArchivos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // gbxListaArchivos
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(211, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(347, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lista de archivos subidos";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.gbxListaArchivos.Controls.Add(this.dgvListaArchivos);
+            this.gbxListaArchivos.Location = new System.Drawing.Point(13, 13);
+            this.gbxListaArchivos.Name = "gbxListaArchivos";
+            this.gbxListaArchivos.Size = new System.Drawing.Size(749, 300);
+            this.gbxListaArchivos.TabIndex = 2;
+            this.gbxListaArchivos.TabStop = false;
+            this.gbxListaArchivos.Text = "Lista de archivos subidos";
+            // 
+            // dgvListaArchivos
+            // 
+            this.dgvListaArchivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaArchivos.Location = new System.Drawing.Point(6, 26);
+            this.dgvListaArchivos.Name = "dgvListaArchivos";
+            this.dgvListaArchivos.RowHeadersWidth = 51;
+            this.dgvListaArchivos.RowTemplate.Height = 29;
+            this.dgvListaArchivos.Size = new System.Drawing.Size(736, 268);
+            this.dgvListaArchivos.TabIndex = 0;
             // 
             // VerArchivosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(776, 328);
+            this.Controls.Add(this.gbxListaArchivos);
             this.Name = "VerArchivosForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(10);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Ver archivos";
+            this.gbxListaArchivos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbxListaArchivos;
+        private System.Windows.Forms.DataGridView dgvListaArchivos;
     }
 }
