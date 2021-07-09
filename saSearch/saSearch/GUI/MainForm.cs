@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using saSearch.GUI;
 
 namespace saSearch
 {
@@ -20,6 +21,12 @@ namespace saSearch
         private void toolStripVer_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripConfig_Click(object sender, EventArgs e)
+        {
+            ConfigServidorForm configServidorForm = new();
+            configServidorForm.Show();
         }
     }
 }

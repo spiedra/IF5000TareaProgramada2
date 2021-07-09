@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="GUI\ConfigServidorForm.cs~RF5cbad4.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Domain\" />
     <Folder Include="Business\" />
