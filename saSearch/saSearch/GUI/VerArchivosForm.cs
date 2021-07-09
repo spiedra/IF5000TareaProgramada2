@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace saSearch
+namespace saSearch.GUI
 {
-    public partial class mainForm : Form
+    public partial class VerArchivosForm : Form
     {
-        public mainForm()
+        public VerArchivosForm()
         {
             InitializeComponent();
-        }
-
-        private void toolStripVer_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
