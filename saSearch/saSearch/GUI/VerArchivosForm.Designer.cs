@@ -65,6 +65,7 @@ namespace saSearch.GUI
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver archivos";
+            this.Load += new System.EventHandler(this.VerArchivosForm_Load);
             this.gbxListaArchivos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).EndInit();
             this.ResumeLayout(false);

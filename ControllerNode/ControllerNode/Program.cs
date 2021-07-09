@@ -6,7 +6,8 @@ namespace ControllerNode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Server s = new Server("localhost", 4404);
+            s.Start();
         }
     }
 }
