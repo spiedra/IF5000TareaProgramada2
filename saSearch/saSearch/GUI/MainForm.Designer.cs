@@ -48,6 +48,7 @@ namespace saSearch
             this.mainMenuStrip.Size = new System.Drawing.Size(800, 28);
             this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "menuStrip1";
+            this.mainMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainMenuStrip_ItemClicked);
             // 
             // toolStripSubir
             // 
