@@ -20,8 +20,7 @@ namespace saSearch
 
         private void toolStripVer_Click(object sender, EventArgs e)
         {
-            SubirArchivoForm form = new SubirArchivoForm();
-            form.Show();
+            
         }
 
         private void toolStripConfig_Click(object sender, EventArgs e)
@@ -32,7 +31,8 @@ namespace saSearch
 
         private void toolStripSubir_Click(object sender, EventArgs e)
         {
-           
+            SubirArchivoForm form = new SubirArchivoForm();
+            form.Show();
         }
     }
 }
