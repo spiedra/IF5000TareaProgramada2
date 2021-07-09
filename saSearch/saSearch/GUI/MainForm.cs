@@ -20,7 +20,8 @@ namespace saSearch
 
         private void toolStripVer_Click(object sender, EventArgs e)
         {
-            
+            VerArchivosForm verArchivosForm = new();
+            verArchivosForm.Show();
         }
 
         private void toolStripConfig_Click(object sender, EventArgs e)
