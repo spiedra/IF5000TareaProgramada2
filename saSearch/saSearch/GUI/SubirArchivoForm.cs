@@ -37,10 +37,11 @@ namespace saSearch.GUI
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
                     FileInfo file = new FileInfo(openFileDialog.FileName);
-                    tb_nombre.Text = openFileDialog.FileName.ToString();
+                    tb_nombre.Text = file.Name;
                     tb_tamano.Text = Convert.ToString(file.Length)+" bytes";
-                   
-
+                    tb_acceso.Text = file.LastAccessTime.ToString();
+                    tb_mod.Text = file.LastWriteTime.ToString();
+                    tb_ubicacion.Text = file.DirectoryName;
                     using (StreamReader reader = new StreamReader(fileStream))
                     {
                         fileContent = reader.ReadToEnd();
