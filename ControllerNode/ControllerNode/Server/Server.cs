@@ -17,6 +17,7 @@ public class Server
     IPEndPoint endPoint;
     Socket s_Server;
     Socket s_Client;
+
     public Server(string ip, int port)
     {
         host = Dns.GetHostEntry(ip);
