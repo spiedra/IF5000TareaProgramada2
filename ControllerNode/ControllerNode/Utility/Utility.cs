@@ -15,19 +15,28 @@ namespace IF500_tftp_server.Utility
     {
         public static string splitTheClientRequest(string request, int index)
         {
-            string[] messaje = request.Split(';');
+            string[] messaje = request.Split('*');
             return messaje[index];
         }
 
-        public static string CreateFolderToUser(string userName)
+        public static string CreateFolderNode(int nodeCount)
         {
-            string folderPath = @"../../../userFolder/" + userName;
+            string folderPath = @"../../../Nodes/" + "Node"+nodeCount;
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
                 return folderPath;
             }
             return null;
+        }
+
+        public static void DeleteDirectories(int nodeCount)
+        {
+            string folderPath = @"../../../Nodes/" + "Node" + nodeCount;
+            if (Directory.Exists(folderPath))
+            {
+                Directory.Delete(folderPath);
+            }
         }
     }
 
