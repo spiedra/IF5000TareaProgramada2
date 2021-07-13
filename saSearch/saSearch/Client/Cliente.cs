@@ -9,7 +9,6 @@ using System.Threading;
 
 namespace IF500_tftp_client.Client
 {
-
     class Cliente
     {
         IPHostEntry host;
@@ -24,6 +23,7 @@ namespace IF500_tftp_client.Client
             endPoint = new IPEndPoint(ipAddr, port);
             s_Client = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
         }
+
         public void Start()
         {
             s_Client.Connect(endPoint);
@@ -34,11 +34,13 @@ namespace IF500_tftp_client.Client
             s_Client.Shutdown(SocketShutdown.Both);
             s_Client.Close();
         }
+
         public void Send(string msg)
         {
             byte[] byteMsg = Encoding.ASCII.GetBytes(msg);
             s_Client.Send(byteMsg);
         }
+
         public void sendBytesMsg(byte[] byteMsg)
         {
             s_Client.Send(byteMsg);

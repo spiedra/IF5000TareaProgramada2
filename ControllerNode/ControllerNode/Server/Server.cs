@@ -71,8 +71,8 @@ public class Server
             buffer = new byte[30000000];
             s_Client.Receive(buffer);
             message = byte2string(buffer);
-            Console.WriteLine();
-            switch (Utility.splitTheClientRequest(message, 0))
+
+            switch (Utility.SplitTheClientRequest(message, 0))
             {
                 case "infoArchivo":
                     //
@@ -80,7 +80,7 @@ public class Server
                     break;
 
                 case "cantidadNodos":
-                    int cantidadNodos = Convert.ToInt32(Utility.splitTheClientRequest(message, 1));
+                    int cantidadNodos = Convert.ToInt32(Utility.SplitTheClientRequest(message, 1));
                     Console.WriteLine("Cantidad de nodos configurados: " + cantidadNodos);
                     this.DeleteNodes();
                     this.CreateNodes(cantidadNodos);

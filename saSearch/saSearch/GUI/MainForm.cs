@@ -32,7 +32,7 @@ namespace saSearch
 
         private void toolStripSubir_Click(object sender, EventArgs e)
         {
-            SubirArchivoForm form = new SubirArchivoForm();
+            SubirArchivoForm form = new();
             form.Show();
         }
     }
