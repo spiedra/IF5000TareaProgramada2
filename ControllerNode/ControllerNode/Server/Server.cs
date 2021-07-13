@@ -64,7 +64,7 @@ public class Server
             buffer = new byte[30000000];
             s_Client.Receive(buffer);
             message = byte2string(buffer);
-            switch (Utility.splitTheClientRequest(message, 0))
+            switch (Utility.SplitTheClientRequest(message, 0))
             {
                 case "jaja":
                     break;
