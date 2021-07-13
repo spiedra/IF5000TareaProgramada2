@@ -43,7 +43,8 @@ CREATE PROCEDURE sp_INSERTAR_ARCHIVO
 AS
 BEGIN
 
-INSERT INTO tb_ARCHIVO (NOMBRE,ULT_MODIFICACION,TAMANO) VALUES (@param_archivo,@param_ult_mod,@param_tamano)
+INSERT INTO tb_ARCHIVO (NOMBRE,ULT_MODIFICACION,TAMANO) VALUES (@param_archivo,@param_ult_mod,@param_tamano);
+
 END
 
 
