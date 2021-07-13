@@ -56,6 +56,7 @@ namespace saSearch.GUI
             this.btnConfirmCantidad.TabIndex = 7;
             this.btnConfirmCantidad.Text = "Confirmar";
             this.btnConfirmCantidad.UseVisualStyleBackColor = true;
+            this.btnConfirmCantidad.Click += new System.EventHandler(this.btnConfirmCantidad_Click);
             // 
             // tbxCantidadNodos
             // 
