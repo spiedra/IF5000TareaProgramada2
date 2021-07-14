@@ -33,7 +33,7 @@ namespace IF500_tftp_server.Business
 
         public void InsertFile(string fileName, string last_mod, string size)
         {
-            this.InsertFile(fileName, last_mod, size);
+            this.userConnection.InsertFile(fileName, last_mod, size);
         }
     }
 }

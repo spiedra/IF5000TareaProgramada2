@@ -20,7 +20,7 @@ namespace ControllerNode.Cliente
         public void SaveFilePartition(string filePartition)
         {
             
-            this.socket.Send(Utility.);
+            //this.socket.Send(Utility.);
         }
     }
 }
