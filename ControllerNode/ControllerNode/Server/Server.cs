@@ -64,13 +64,11 @@ public class Server
                     SendMetaDataBufferToNode(message, nodeBusiness.GetNumberNodes());
                     break;
 
-                case "archivo":
-
-
+                case "archivo": // posible error en la sincronizacion del mensaje
                     buffer = new byte[30000000];
                     s_Client.Receive(buffer);
 
-
+                    SendBufferFileToNode(buffer, Utility.SplitTheClientRequest(message, 1), nodeBusiness.GetNumberNodes());
                     break;
 
                 case "cantidadNodos":
@@ -139,18 +137,31 @@ public class Server
         List<byte[]> listBufferMetaData = Utility.GetListBufferMetaData(message, cantNodes, fileName);
         for (int i = 1; i < listBufferMetaData.Count; i++)
         {
-            listaClientes[i].SendMetaDataFile(listBufferMetaData[i], fileName);
+            listaClientes[i].SendMetaDataFile(listBufferMetaData[i], fileName, "Node" + i);
         }
     }
 
-    private void SendBufferFileToNode(byte[] bufferFile, string fileName)
+    private void SendBufferFileToNode(byte[] bufferFile, string fileName, int nodesAmount)
     {
         nodeBusiness.InsertFile(fileName);
-
+        List<byte[]> listBuffersFile = Utility.GetListByteArrays(bufferFile, nodesAmount);
+        for (int i = 1; i < listBuffersFile.Count; i++)
+        {
+            string fragName = "frag" + i + fileName + ".txt", nodeName = "Node" + i;
+            nodeBusiness.InsertFragment(fileName, fragName, nodeName);
+            listaClientes[i].SaveFilePartition(listBuffersFile[i], fragName, nodeName);
+        }
+        SendBufferParityToNode(listBuffersFile, fileName);
     }
 
-    private void SendBufferParityToNode()
+    private void SendBufferParityToNode(List<byte[]> listBuffersFile, string fileName)
     {
-
+        foreach (Cliente cliente in listaClientes)
+        {
+            for (int i = 1; i < listBuffersFile.Count; i++)
+            {
+                cliente.MakeParity(listBuffersFile[i], "frag" + i + fileName + ".txt", "Node" + i);
+            }
+        }
     }
 }
