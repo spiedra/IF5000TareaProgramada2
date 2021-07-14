@@ -2,15 +2,9 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Text;
 using IF500_tftp_server.Utility;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Drawing.Imaging;
 using ControllerNode.Cliente;
-using System.Collections;
 using IF500_tftp_server.Business;
 
 public class Server
@@ -47,18 +41,6 @@ public class Server
             Console.Write("Se ha conectado un cliente...");
         }
     }
-    public string byte2string(byte[] buffer)
-    {
-        string message;
-        int endIndex;
-        message = Encoding.ASCII.GetString(buffer);
-        endIndex = message.IndexOf('\0');
-        if (endIndex > 0)
-        {
-            message = message.Substring(0, endIndex);
-        }
-        return message;
-    }
 
     public void clientConnection(object s)
     {
@@ -70,13 +52,28 @@ public class Server
         {
             buffer = new byte[30000000];
             s_Client.Receive(buffer);
-            message = byte2string(buffer);
+            message = Utility.Byte2string(buffer);
 
             switch (Utility.SplitTheClientRequest(message, 0))
             {
+                case "identificador":
+                    SetIndentificador(s_Client, Convert.ToInt32(Utility.SplitTheClientRequest(message, 1)));
+                    break;
+
                 case "infoArchivo":
-                    //
-                    //aca se recibe el archivo y metadatos
+                    Utility.CreateMetaDataFile(new string[] {
+                             Utility.SplitTheClientRequest(message, 1)
+                           , Utility.SplitTheClientRequest(message, 2)
+                           , Utility.SplitTheClientRequest(message, 3)
+                           , Utility.SplitTheClientRequest(message, 4) 
+                    });
+                    break;
+
+                case "archivo":
+                    buffer = new byte[30000000];
+                    s_Client.Receive(buffer);
+
+
                     break;
 
                 case "cantidadNodos":
@@ -93,7 +90,6 @@ public class Server
     /// Crea carpetas que sirven de nodos
     /// </summary>
     /// <param name="cantidadNodos">cantidad de nodos a crear</param>
-
     public void CreateNodes(int cantidadNodos)
     {
         for (int i = 1; i <= cantidadNodos; i++)
@@ -105,16 +101,29 @@ public class Server
 
     public void SendPartition(string bytes)
     {
-        for(int i=1; i < this.listaClientes.Count; i++)
+        for (int i = 1; i < this.listaClientes.Count; i++)
         {
-            
+
+        }
+    }
+
+    /// <summary>
+    /// Asigna el identificador(cliente, nodo) a cada cliente
+    /// </summary>
+    private void SetIndentificador(Socket socket, int identificador)
+    {
+        foreach (Cliente cliente in listaClientes)
+        {
+            if (cliente.Socket.Equals(socket))
+            {
+                cliente.Identificador = identificador;
+            }
         }
     }
 
     /// <summary>
     /// elimina todos los nodos (carpetas)
     /// </summary>
-
     public void DeleteNodes()
     {
         for (int i = 1; i <= 20; i++)

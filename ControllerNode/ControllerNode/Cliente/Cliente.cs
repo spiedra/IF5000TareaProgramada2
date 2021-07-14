@@ -10,11 +10,12 @@ namespace ControllerNode.Cliente
 {
     class Cliente
     {
-        public Socket socket { get; set; }
+        public Socket Socket { get; set; }
+        public int Identificador { get; set; }
 
         public Cliente(Socket socket)
         {
-            this.socket = socket;
+            this.Socket = socket;
         }
 
         public void SaveFilePartition(string filePartition)

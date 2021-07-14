@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
 using System.IO;
-using System.Drawing;
-using System.Threading;
+using System.Text;
 
 namespace IF500_tftp_server.Utility
 {
@@ -17,6 +12,19 @@ namespace IF500_tftp_server.Utility
         {
             string[] messaje = request.Split('*');
             return messaje[index];
+        }
+
+        public static string Byte2string(byte[] buffer)
+        {
+            string message;
+            int endIndex;
+            message = Encoding.ASCII.GetString(buffer);
+            endIndex = message.IndexOf('\0');
+            if (endIndex > 0)
+            {
+                message = message.Substring(0, endIndex);
+            }
+            return message;
         }
 
         public static string CreateFolderNode(int nodeCount)
@@ -29,7 +37,6 @@ namespace IF500_tftp_server.Utility
             }
             return null;
         }
-
 
         public static void DeleteDirectories(int nodeCount)
         {
@@ -140,6 +147,21 @@ namespace IF500_tftp_server.Utility
             newFile.Write(byteArray, 0, byteArray.Length);
             newFile.Flush();
             newFile.Close();
+        }
+
+        public static byte[] CreateMetaDataFile(string[] values)
+        {
+            string tempFilePath = Path.GetTempFileName();
+            using (FileStream fs = new(tempFilePath, FileMode.Open))
+            {
+                foreach (string metaData in values)
+                {
+                    fs.Write(new UTF8Encoding(true).GetBytes(metaData), 0, metaData.Length);
+                }
+            }
+            byte[] buffer = ConvertFileToByteArray(tempFilePath);
+            File.Delete(tempFilePath);
+            return buffer;
         }
     }
 }
