@@ -134,7 +134,7 @@ namespace saSearch.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 328);
             this.Controls.Add(this.gbxListaArchivos);
-            this.Name = "VerArchivosForm";
+           // this.Name = "VerArchivosForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver archivos";

@@ -19,12 +19,7 @@ namespace saSearch.GUI
         {
             c = Cliente.GetSingletonCliente();
             InitializeComponent();
-        }
-
-        private void lblConfigServidorTitle_Click(object sender, EventArgs e)
-        {
-
-        }
+        } 
 
         private void btnConfirmCantidad_Click(object sender, EventArgs e)
         {

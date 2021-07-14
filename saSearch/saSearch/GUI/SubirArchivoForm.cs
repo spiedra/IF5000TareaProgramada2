@@ -29,7 +29,7 @@ namespace saSearch.GUI
         private void btn_enviar_Click(object sender, EventArgs e)
         {
             Byte[] bytes = Utility.ConvertFileToByteArray(fileDirectory);
-            c.Send("archivo");
+            c.Send("archivo*"+name);
             Thread.Sleep(30);
             c.sendBytesMsg(bytes);
             //
@@ -48,7 +48,6 @@ namespace saSearch.GUI
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-
                 string filePath = openFileDialog.FileName;
                 var fileStream = openFileDialog.OpenFile();
                 fileInfo = new(openFileDialog.FileName);
