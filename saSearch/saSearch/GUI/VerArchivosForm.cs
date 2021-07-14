@@ -16,42 +16,37 @@ namespace saSearch.GUI
 {
     public partial class VerArchivosForm : Form
     {
-        Cliente c;
-        Thread t;
+        //Cliente c;
+        //Thread t;
 
         public VerArchivosForm()
         {
-            c = new Cliente("localhost", 4404);
-            c.Start();
-            t = new Thread(this.escucha);
-            t.Start();
+            //c = new Cliente("localhost", 4404);
+            //c.Start();
+            //t = new Thread(this.escucha);
+            //t.Start();
             InitializeComponent();
         }
 
-        public void escucha()
-        {
-            try
-            {
-                while (true)
-                {
-                    String message = c.Receive();
+        //public void escucha()
+        //{
+        //    try
+        //    {
+        //        while (true)
+        //        {
+        //            String message = c.Receive();
 
-                    switch (Utility.splitTheClientRequest(message, 0))
-                    {
-                        case "jajaja":
-                            break;
-                    }
-                }
-            }
-            catch (SocketException se)
-            {
-                var error = se.SocketErrorCode;
-            }
-        }
-
-        private void VerArchivosForm_Load(object sender, EventArgs e)
-        {
-
-        }
+        //            switch (Utility.splitTheClientRequest(message, 0))
+        //            {
+        //                case "jajaja":
+        //                    break;
+        //            }
+        //        }
+        //    }
+        //    catch (SocketException se)
+        //    {
+        //        var error = se.SocketErrorCode;
+        //    }
+        //}
     }
 }

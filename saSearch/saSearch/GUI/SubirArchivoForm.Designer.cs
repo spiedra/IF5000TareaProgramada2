@@ -30,7 +30,7 @@ namespace saSearch.GUI
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_enviar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tb_ubicacion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,16 +42,16 @@ namespace saSearch.GUI
             this.label2 = new System.Windows.Forms.Label();
             this.tb_nombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_seleccionar_archivo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btn_enviar);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btn_seleccionar_archivo);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(40, 49);
             this.groupBox1.Name = "groupBox1";
@@ -59,18 +59,17 @@ namespace saSearch.GUI
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Subir un archivo";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // button2
+            // btn_enviar
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(85, 307);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(515, 46);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Enviar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_enviar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_enviar.Location = new System.Drawing.Point(85, 307);
+            this.btn_enviar.Name = "btn_enviar";
+            this.btn_enviar.Size = new System.Drawing.Size(515, 46);
+            this.btn_enviar.TabIndex = 4;
+            this.btn_enviar.Text = "Enviar";
+            this.btn_enviar.UseVisualStyleBackColor = true;
+            this.btn_enviar.Click += new System.EventHandler(this.btn_enviar_Click);
             // 
             // groupBox2
             // 
@@ -175,18 +174,17 @@ namespace saSearch.GUI
             this.label1.Size = new System.Drawing.Size(76, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Archivo: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button1
+            // btn_seleccionar_archivo
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(85, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(515, 44);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Seleccionar archivo";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_seleccionar_archivo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_seleccionar_archivo.Location = new System.Drawing.Point(85, 42);
+            this.btn_seleccionar_archivo.Name = "btn_seleccionar_archivo";
+            this.btn_seleccionar_archivo.Size = new System.Drawing.Size(515, 44);
+            this.btn_seleccionar_archivo.TabIndex = 0;
+            this.btn_seleccionar_archivo.Text = "Seleccionar archivo";
+            this.btn_seleccionar_archivo.UseVisualStyleBackColor = true;
+            this.btn_seleccionar_archivo.Click += new System.EventHandler(this.btn_seleccionar_archivo_Click);
             // 
             // SubirArchivoForm
             // 
@@ -207,9 +205,9 @@ namespace saSearch.GUI
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_seleccionar_archivo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_enviar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tb_tamano;
         private System.Windows.Forms.Label label2;
