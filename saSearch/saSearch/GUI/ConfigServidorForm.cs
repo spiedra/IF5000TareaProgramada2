@@ -17,8 +17,7 @@ namespace saSearch.GUI
         Cliente c;
         public ConfigServidorForm()
         {
-            c = new Cliente("localhost", 4404);
-            c.Start();
+            c = Cliente.GetSingletonCliente();
             InitializeComponent();
         }
 

@@ -1,4 +1,5 @@
-﻿using saSearch.GUI;
+﻿using IF500_tftp_client.Client;
+using saSearch.GUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,11 @@ namespace saSearch
 {
     public partial class mainForm : Form
     {
+        Cliente c;
         public mainForm()
         {
+            c = Cliente.GetSingletonCliente();
+            c.Start();
             InitializeComponent();
         }
 
@@ -34,6 +38,11 @@ namespace saSearch
         {
             SubirArchivoForm form = new();
             form.Show();
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
