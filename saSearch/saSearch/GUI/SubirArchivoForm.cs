@@ -33,6 +33,7 @@ namespace saSearch.GUI
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the path of specified file
+                    
                     filePath = openFileDialog.FileName;
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
@@ -56,6 +57,11 @@ namespace saSearch.GUI
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
