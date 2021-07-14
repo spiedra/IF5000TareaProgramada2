@@ -18,10 +18,16 @@ namespace ControllerNode.Cliente
             this.Socket = socket;
         }
 
-        public void SaveFilePartition(string filePartition)
+        public void SaveFilePartition(string filePartition, string fileName)
         {
-            
+
             //this.socket.Send(Utility.);
+        }
+
+        public void SendMetaDataFile(byte[] buffer, string fileName)
+        {
+            Socket.Send(Encoding.ASCII.GetBytes("metaDataFile*" + fileName));
+            Socket.Send(buffer);
         }
     }
 }

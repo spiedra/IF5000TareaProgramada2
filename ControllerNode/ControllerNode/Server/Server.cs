@@ -61,15 +61,12 @@ public class Server
                     break;
 
                 case "infoArchivo":
-                    Utility.CreateMetaDataFile(new string[] {
-                             Utility.SplitTheClientRequest(message, 1)
-                           , Utility.SplitTheClientRequest(message, 2)
-                           , Utility.SplitTheClientRequest(message, 3)
-                           , Utility.SplitTheClientRequest(message, 4) 
-                    });
+                    SendMetaDataBufferToNode(message, nodeBusiness.GetNumberNodes());
                     break;
 
                 case "archivo":
+
+
                     buffer = new byte[30000000];
                     s_Client.Receive(buffer);
 
@@ -131,5 +128,29 @@ public class Server
             Utility.DeleteDirectories(i);
         }
         this.nodeBusiness.DeleteNodes();
+    }
+
+    /// <summary>
+    /// Envia a cada nodo los meta datos del archivo
+    /// </summary>
+    public void SendMetaDataBufferToNode(string message, int cantNodes)
+    {
+        string fileName = Utility.SplitTheClientRequest(message, 1);
+        List<byte[]> listBufferMetaData = Utility.GetListBufferMetaData(message, cantNodes, fileName);
+        for (int i = 1; i < listBufferMetaData.Count; i++)
+        {
+            listaClientes[i].SendMetaDataFile(listBufferMetaData[i], fileName);
+        }
+    }
+
+    private void SendBufferFileToNode(byte[] bufferFile, string fileName)
+    {
+        nodeBusiness.InsertFile(fileName);
+
+    }
+
+    private void SendBufferParityToNode()
+    {
+
     }
 }

@@ -31,9 +31,14 @@ namespace IF500_tftp_server.Business
             this.userConnection.InsertFragment(fileName, fragment, node);
         }
 
-        public void InsertFile(string fileName, string last_mod, string size)
+        public void InsertFile(string fileName)
         {
-            this.userConnection.InsertFile(fileName, last_mod, size);
+            this.userConnection.InsertFile(fileName);
+        }
+
+        public int GetNumberNodes()
+        {
+            return this.userConnection.GetNumberNodes();
         }
     }
 }

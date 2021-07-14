@@ -38,32 +38,43 @@ namespace IF500_tftp_server.Data
             this.ExecuteNonQuery();
         }
 
-        public void InsertFile(string fileName, string last_mod, string size)
+        public void InsertFile(string fileName)
         {
             string paramFile = "@param_archivo"
-               , paramLastMod = "@param_ult_mod"
-               , paramSize = "@param_tamano"
                , commandText = "dbo.sp_INSERTAR_ARCHIVO";
             this.InitSqlClientComponents(commandText);
-            this.CreateParameter(paramFile, SqlDbType.VarChar,fileName);
-            this.CreateParameter(paramLastMod, SqlDbType.VarChar, last_mod);
-            this.CreateParameter(paramSize, SqlDbType.VarChar, size);
+            this.CreateParameter(paramFile, SqlDbType.VarChar, fileName);
             this.ExecuteNonQuery();
         }
 
-        public void InsertFragment(string fileName, string fragment, string node)
+        public int GetNumberNodes()
+        {
+            string commandText = "dbo.sp_OBTENER_CANTIDAD_NODOS";
+            this.InitSqlClientComponents(commandText);
+            this.ExcecuteReader();
+            return ReadGetNumberNodes();
+        }
+
+        private int ReadGetNumberNodes()
+        {
+            this.sqlDataReader.Read();
+            this.sqlConnection.Close();
+            return this.sqlDataReader.GetInt32(0);
+        }
+
+        public void InsertFragment(string fileName, string fragmentName, string nodeName)
         {
             string paramNode = "@param_nodo"
-                , paramFragment="@param_fragmento"
-                ,paramArchivo="@param_archivo"
-                ,commandText = "dbo.sp_INSERTAR_FRAGMENTO";
+                , paramFragment = "@param_fragmento"
+                , paramArchivo = "@param_archivo"
+                , commandText = "dbo.sp_INSERTAR_FRAGMENTO";
             this.InitSqlClientComponents(commandText);
-            this.CreateParameter(paramNode, SqlDbType.VarChar, node);
-            this.CreateParameter(paramFragment, SqlDbType.VarChar, fragment);
+            this.CreateParameter(paramNode, SqlDbType.VarChar, nodeName);
+            this.CreateParameter(paramFragment, SqlDbType.VarChar, fragmentName);
             this.CreateParameter(paramArchivo, SqlDbType.VarChar, fileName);
             this.ExecuteNonQuery();
         }
-     
+
         private void InitSqlClientComponents(string commandText)
         {
             AccessConnection accessConnection = new AccessConnection();
@@ -84,6 +95,12 @@ namespace IF500_tftp_server.Data
             this.sqlCommand.CommandType = CommandType.StoredProcedure;
             this.sqlCommand.ExecuteNonQuery();
             this.sqlConnection.Close();
+        }
+
+        private void ExcecuteReader()
+        {
+            this.ExecuteConnectionCommands();
+            this.sqlDataReader = this.sqlCommand.ExecuteReader();
         }
 
         private void ExecuteConnectionCommands()

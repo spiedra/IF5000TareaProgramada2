@@ -149,7 +149,7 @@ namespace IF500_tftp_server.Utility
             newFile.Close();
         }
 
-        public static byte[] CreateMetaDataFile(string[] values)
+        public static byte[] GetMetaDataBuffer(string[] values)
         {
             string tempFilePath = Path.GetTempFileName();
             using (FileStream fs = new(tempFilePath, FileMode.Open))
@@ -162,6 +162,16 @@ namespace IF500_tftp_server.Utility
             byte[] buffer = ConvertFileToByteArray(tempFilePath);
             File.Delete(tempFilePath);
             return buffer;
+        }
+
+        public static List<byte[]> GetListBufferMetaData(string message, int cantNodes, string fileName)
+        {
+            return GetListByteArrays(Utility.GetMetaDataBuffer(new string[] {
+                             fileName
+                           , SplitTheClientRequest(message, 2)
+                           , SplitTheClientRequest(message, 3)
+                           , SplitTheClientRequest(message, 4)
+                    }), cantNodes);
         }
     }
 }
