@@ -66,7 +66,7 @@ public class Server
 
                 case "archivo": // posible error en la sincronizacion del mensaje
                     buffer = new byte[30000000];
-                    s_Client.Receive(buffer);
+                    s_Client.Receive(buffer);  
 
                     SendBufferFileToNode(buffer, Utility.SplitTheClientRequest(message, 1), nodeBusiness.GetNumberNodes());
                     break;

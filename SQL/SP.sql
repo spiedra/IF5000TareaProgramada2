@@ -14,7 +14,7 @@ DELETE FROM tb_NODO
 DELETE FROM tb_FRAGMENTO
 DELETE FROM tb_ARCHIVO
 END
-
+GO
 ----------------------------------
 
 CREATE PROCEDURE sp_INSERTAR_FRAGMENTO
@@ -42,9 +42,21 @@ CREATE PROCEDURE sp_INSERTAR_ARCHIVO
 @param_tamano varchar(32)
 AS
 BEGIN
+GO
+
+------------------------------------------------------------------------
 
 INSERT INTO tb_ARCHIVO (NOMBRE,ULT_MODIFICACION,TAMANO) VALUES (@param_archivo,@param_ult_mod,@param_tamano);
-
 END
+GO
 
+------------------------------------------------------------------------
 
+CREATE PROCEDURE sp_GET_FILE_NAMES
+AS
+BEGIN
+	SELECT 
+		NOMBRE
+	FROM [dbo].[tb_ARCHIVO]
+END
+GO
