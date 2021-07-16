@@ -19,6 +19,7 @@ namespace Node.Node
         {
             c = new Cliente("localhost", 4404);
             c.Start();
+            c.Send("setId*2");
             t = new Thread(this.escucha);
             t.Start();
         }
@@ -62,18 +63,21 @@ namespace Node.Node
                         case "getFragment":
                             nodeName = Utility.splitTheClientRequest(message, 1);
                             fragmentName = Utility.splitTheClientRequest(message, 2);
+                            c.Send("fragFile*");
                             c.sendBytesMsg(this.GetFile(nodeName, fragmentName));
                             break;
 
                         case "getParity":
                             nodeName = Utility.splitTheClientRequest(message, 1);
-                            fragmentName = Utility.splitTheClientRequest(message, 2);
-                            c.sendBytesMsg(this.GetFile(nodeName, fragmentName));
+                            string parityName = Utility.splitTheClientRequest(message, 2);
+                            c.Send("parity*");
+                            c.sendBytesMsg(this.GetParity(nodeName, parityName));
                             break;
 
                         case "getMetaData":
                             nodeName = Utility.splitTheClientRequest(message, 1);
                             string metaDataName = Utility.splitTheClientRequest(message, 2);
+                            c.Send("fragMetaData*");
                             c.sendBytesMsg(this.GetFile(nodeName, metaDataName));
                             break;
                     }
@@ -109,6 +113,11 @@ namespace Node.Node
         private Byte[] GetFile(string nodeName, string fileName)
         {
             return Utility.ConvertFileToByteArray(@"../../../Nodes/" + nodeName + "/" + fileName);
+        }
+
+        private Byte[] GetParity(string nodeName, string fileName)
+        {
+            return Utility.ConvertFileToByteArray(@"../../../Nodes/" + nodeName + "/Parity/" + fileName);
         }
     }
 }

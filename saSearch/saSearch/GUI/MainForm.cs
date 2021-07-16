@@ -18,7 +18,8 @@ namespace saSearch
         public mainForm()
         {
             c = Cliente.GetSingletonCliente();
-            c.Start();
+            //c.Start();
+            //c.Send("setId*1");
             InitializeComponent();
         }
 
@@ -30,8 +31,7 @@ namespace saSearch
 
         private void toolStripConfig_Click(object sender, EventArgs e)
         {
-            ConfigServidorForm configServidorForm = new();
-            configServidorForm.Show();
+            
         }
 
         private void toolStripSubir_Click(object sender, EventArgs e)
@@ -43,6 +43,18 @@ namespace saSearch
         private void mainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripMenuDisponibilidad_Click(object sender, EventArgs e)
+        {
+            DisponibilidadForm disponibilidad = new();
+            disponibilidad.Show();
+        }
+
+        private void toolStripMenuCantidad_Click(object sender, EventArgs e)
+        {
+            ConfigServidorForm configServidorForm = new();
+            configServidorForm.Show();
         }
     }
 }
