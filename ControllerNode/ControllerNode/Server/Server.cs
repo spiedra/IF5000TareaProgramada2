@@ -110,6 +110,10 @@ public class Server
                 case "setAvailability":
                     SetAvailability(Convert.ToBoolean(Utility.SplitTheClientRequest(message, 1)), Convert.ToInt32(Utility.SplitTheClientRequest(message, 2)));
                     break;
+
+                case "isAvailable":
+                    IsAvailable(s_Client);
+                    break;
             }
         }
     }
@@ -278,6 +282,27 @@ public class Server
             if (cliente.Socket.Equals(s_client))
             {
                 cliente.SendTheRequestedToSaSearch(Utility.ConcatByteArrays(listFragments), protocol);
+            }
+        }
+    }
+
+    private void IsAvailable(Socket s_client)
+    {
+        foreach (Cliente cliente in listaClientes)
+        {
+            if (cliente.Socket.Equals(s_client))
+            {
+                for (int i = 0; i < listNodes.Count; i++)
+                {
+                    if (!listNodes[i].IsAvailable)
+                    {
+                        cliente.SendAvailabilityNode(i + 1);
+                    }
+                    else
+                    {
+                        cliente.SendAvailabilityNode(-1);
+                    }
+                }
             }
         }
     }

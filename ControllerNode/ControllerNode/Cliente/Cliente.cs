@@ -47,5 +47,10 @@ namespace ControllerNode.Cliente
         {
             Socket.Send(Encoding.ASCII.GetBytes(protocol + "*Node" + index + "*" + fileName + "MetaData" + index));
         }
+
+        public void SendAvailabilityNode(int nodeIndex)
+        {
+            Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString(nodeIndex)));
+        }
     }
 }
