@@ -14,3 +14,7 @@ Este repositorio contiene una simulación de un sistema de archivos (SA File Sys
 ![DIAGRAMA_TAREAPROGRAMADA2](https://user-images.githubusercontent.com/79825499/126006451-f3d244d7-f7a9-467e-a694-44ca0aa572fb.png)
 
 ### Diagrama de clases
+
+- saSearch
+
+![Diagrama_de_clases_SA_SEARCH_1](https://user-images.githubusercontent.com/79825499/126014232-60e6ee8e-9347-4725-b47d-8cd1266bdbb1.png)
