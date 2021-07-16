@@ -40,5 +40,10 @@ namespace IF500_tftp_server.Business
         {
             return this.userConnection.GetNumberNodes();
         }
+
+        public List<string> GetListFile()
+        {
+            return this.userConnection.GetListFile();
+        }
     }
 }

@@ -55,6 +55,25 @@ namespace IF500_tftp_server.Data
             return ReadGetNumberNodes();
         }
 
+        public List<string> GetListFile()
+        {
+            string commandText = "dbo.sp_GET_FILE_NAMES";
+            this.InitSqlClientComponents(commandText);
+            this.ExcecuteReader();
+            return ReadGetListFile();
+        }
+
+        private List<string> ReadGetListFile()
+        {
+            List<string> listFileNames = new();
+            while (this.sqlDataReader.Read())
+            {
+                listFileNames.Add(sqlDataReader.GetString(0));
+            }
+            this.sqlConnection.Close();
+            return listFileNames;
+        }
+
         private int ReadGetNumberNodes()
         {
             this.sqlDataReader.Read();
