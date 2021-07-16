@@ -10,5 +10,7 @@ Este repositorio contiene una simulación de un sistema de archivos (SA File Sys
 - ControllerNode (back end) se usa una aplicacion de consola C Sharp
 - saSearch (front end) se usa una aplicacion Windows Forms .NET
 
-## Capturas de pantalla
-Proximamente...
+## Diagrama de componentes
+![DIAGRAMA_TAREAPROGRAMADA2](https://user-images.githubusercontent.com/79825499/126006451-f3d244d7-f7a9-467e-a694-44ca0aa572fb.png)
+
+## Diagrama de clases
