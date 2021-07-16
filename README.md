@@ -18,3 +18,7 @@ Este repositorio contiene una simulación de un sistema de archivos (SA File Sys
 - saSearch
 
 ![Diagrama_de_clases_SA_SEARCH_1](https://user-images.githubusercontent.com/79825499/126014232-60e6ee8e-9347-4725-b47d-8cd1266bdbb1.png)
+
+- ControllerNode
+
+![Diagrama_de_clases_ControllerNode_1](https://user-images.githubusercontent.com/79825499/126016369-e8d65bc1-add5-4987-982f-8483e0de23c1.png)
