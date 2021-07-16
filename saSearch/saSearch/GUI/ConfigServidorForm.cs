@@ -17,15 +17,9 @@ namespace saSearch.GUI
         Cliente c;
         public ConfigServidorForm()
         {
-            c = new Cliente("localhost", 4404);
-            c.Start();
+            c = Cliente.GetSingletonCliente();
             InitializeComponent();
-        }
-
-        private void lblConfigServidorTitle_Click(object sender, EventArgs e)
-        {
-
-        }
+        } 
 
         private void btnConfirmCantidad_Click(object sender, EventArgs e)
         {

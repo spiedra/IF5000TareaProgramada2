@@ -32,19 +32,33 @@ INSERT INTO tb_FRAGMENTO
 ID_NODO) 
 VALUES 
 (@local_id_archivo,
-@param_archivo,
+@param_fragmento,
 @local_id_nodo)
 END
+---------------------------------
 
 CREATE PROCEDURE sp_INSERTAR_ARCHIVO
-@param_archivo varchar(300),
-@param_ult_mod varchar(32),
-@param_tamano varchar(32)
+@param_archivo varchar(300)
 AS
 BEGIN
 GO
 
+<<<<<<< HEAD
 ------------------------------------------------------------------------
+=======
+INSERT INTO tb_ARCHIVO (NOMBRE) VALUES (@param_archivo);
+
+END
+
+CREATE PROCEDURE sp_OBTENER_CANTIDAD_NODOS
+AS
+BEGIN
+
+		BEGIN
+			SELECT COUNT (ID_NODO) AS CANTIDAD
+			FROM tb_NODO
+		END
+>>>>>>> Randall
 
 INSERT INTO tb_ARCHIVO (NOMBRE,ULT_MODIFICACION,TAMANO) VALUES (@param_archivo,@param_ult_mod,@param_tamano);
 END

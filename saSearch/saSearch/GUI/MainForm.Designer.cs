@@ -33,6 +33,8 @@ namespace saSearch
             this.toolStripSubir = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripVer = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuCantidad = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuDisponibilidad = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,10 +67,29 @@ namespace saSearch
             // 
             // toolStripConfig
             // 
+            this.toolStripConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuCantidad,
+            this.toolStripMenuDisponibilidad});
             this.toolStripConfig.Name = "toolStripConfig";
             this.toolStripConfig.Size = new System.Drawing.Size(67, 24);
             this.toolStripConfig.Text = "&Config";
             this.toolStripConfig.Click += new System.EventHandler(this.toolStripConfig_Click);
+            // 
+            // toolStripMenuCantidad
+            // 
+            this.toolStripMenuCantidad.CheckOnClick = true;
+            this.toolStripMenuCantidad.Name = "toolStripMenuCantidad";
+            this.toolStripMenuCantidad.Size = new System.Drawing.Size(197, 26);
+            this.toolStripMenuCantidad.Text = "Cantidad nodos";
+            this.toolStripMenuCantidad.Click += new System.EventHandler(this.toolStripMenuCantidad_Click);
+            // 
+            // toolStripMenuDisponibilidad
+            // 
+            this.toolStripMenuDisponibilidad.CheckOnClick = true;
+            this.toolStripMenuDisponibilidad.Name = "toolStripMenuDisponibilidad";
+            this.toolStripMenuDisponibilidad.Size = new System.Drawing.Size(197, 26);
+            this.toolStripMenuDisponibilidad.Text = "Disponibilidad";
+            this.toolStripMenuDisponibilidad.Click += new System.EventHandler(this.toolStripMenuDisponibilidad_Click);
             // 
             // mainForm
             // 
@@ -80,6 +101,7 @@ namespace saSearch
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu principal";
+            this.Load += new System.EventHandler(this.mainForm_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -93,6 +115,9 @@ namespace saSearch
         private System.Windows.Forms.ToolStripMenuItem toolStripSubir;
         private System.Windows.Forms.ToolStripMenuItem toolStripVer;
         private System.Windows.Forms.ToolStripMenuItem toolStripConfig;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCantidad;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDisponibilidad;
     }
 }
 

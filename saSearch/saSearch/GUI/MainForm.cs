@@ -1,4 +1,5 @@
-﻿using saSearch.GUI;
+﻿using IF500_tftp_client.Client;
+using saSearch.GUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,12 @@ namespace saSearch
 {
     public partial class mainForm : Form
     {
+        Cliente c;
         public mainForm()
         {
+            c = Cliente.GetSingletonCliente();
+            //c.Start();
+            //c.Send("setId*1");
             InitializeComponent();
         }
 
@@ -26,14 +31,30 @@ namespace saSearch
 
         private void toolStripConfig_Click(object sender, EventArgs e)
         {
-            ConfigServidorForm configServidorForm = new();
-            configServidorForm.Show();
+            
         }
 
         private void toolStripSubir_Click(object sender, EventArgs e)
         {
             SubirArchivoForm form = new();
             form.Show();
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuDisponibilidad_Click(object sender, EventArgs e)
+        {
+            DisponibilidadForm disponibilidad = new();
+            disponibilidad.Show();
+        }
+
+        private void toolStripMenuCantidad_Click(object sender, EventArgs e)
+        {
+            ConfigServidorForm configServidorForm = new();
+            configServidorForm.Show();
         }
     }
 }

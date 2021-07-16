@@ -28,6 +28,11 @@ namespace saSearch.GUI
             InitializeComponent();
         }
 
+        private void dgvListaArchivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         //public void escucha()
         //{
         //    try

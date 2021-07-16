@@ -16,12 +16,23 @@ namespace IF500_tftp_client.Client
         IPEndPoint endPoint;
         Socket s_Client;
 
+        static Cliente SINGLETONCLIENTE = null;
+
         public Cliente(string ip, int port)
         {
             host = Dns.GetHostEntry(ip);
             ipAddr = host.AddressList[0];
             endPoint = new IPEndPoint(ipAddr, port);
             s_Client = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        }
+
+        public static Cliente GetSingletonCliente()
+        {
+            if (SINGLETONCLIENTE == null)
+            {
+                SINGLETONCLIENTE=new Cliente("localhost", 4404);
+            }
+            return SINGLETONCLIENTE;
         }
 
         public void Start()
