@@ -1,30 +1,29 @@
-﻿using System;
-using System.IO;
-using System.Drawing;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.IO;
 
 namespace Node.Utility
 {
+    /// <summary>
+    /// Clase estatica que contienen los metodos comunmente usados para el funcionamiento de la aplicación
+    /// </summary>
     class MyUtility
     {
         /// <summary>
-        /// obtiene archivo de nodo segun nombre de nodo y archivo
-        /// <param name="request">Mensaje a realizarle split</param>
-        /// <param name="index">posicion del mensaje a recuperar</param>
+        /// Permite separar la cadena enviada por el cliente
         /// </summary>
-        public static string splitTheClientRequest(string request, int index)
+        /// <param name="request">Mensaje a dividir</param>
+        /// <param name="index">Indice de la pieza de la cadena</param>
+        /// <returns>Devuelve la pieza solicitada de la cadena</returns>
+        public static string SplitTheClientRequest(string request, int index)
         {
             string[] messaje = request.Split('*');
             return messaje[index];
         }
+
         /// <summary>
-        /// convertir archivo a arreglo de bytes
-        /// <param name="path">ruta del archivo a convertir</param>
+        /// Convierte los archivos .txt en un arreglo de bytes
         /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Devulve un archivo .txt convertido en un arreglo de bytes</returns>
         public static byte[] ConvertFileToByteArray(string path)
         {
             using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);

@@ -1,13 +1,20 @@
-﻿using System;
-using Node.MyNode;
-
-namespace Node
+﻿namespace Node
 {
+    /// <summary>
+    /// Clase principal del proyecto
+    /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Crea una nueva instancia de node
+        /// </summary>
+        /// <remarks>
+        /// El constructor de la clase <b>Node</b> ejecuta una hilo para poder conectarse al servidor
+        /// </remarks>
+        /// <param name="args"></param>
+        static void Main()
         {
-            //MyNode.Node node = new();
+            _ = new MyNode.Node();
         }
     }
 }

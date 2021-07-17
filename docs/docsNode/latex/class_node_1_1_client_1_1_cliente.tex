@@ -1,0 +1,141 @@
+\hypertarget{class_node_1_1_client_1_1_cliente}{}\doxysection{Node.\+Client.\+Cliente Class Reference}
+\label{class_node_1_1_client_1_1_cliente}\index{Node.Client.Cliente@{Node.Client.Cliente}}
+
+
+Clase que permite la comunicación con el servidor  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a6630a78d514932777a07a0b55309634f}{Cliente}} (string ip, int port)
+\begin{DoxyCompactList}\small\item\em Constructor de {\bfseries{\mbox{\hyperlink{class_node_1_1_client_1_1_cliente}{Cliente}}}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a261874bc87854606e617a9c97fe22453}{Start}} ()
+\begin{DoxyCompactList}\small\item\em Inicia la conexión con el servidor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a65f238d97ceee12dffcb67c5fe63c8ba}{Close}} ()
+\begin{DoxyCompactList}\small\item\em Cierra la conexión con el servidor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a74ed33f3bb92099fecaa1b138a966aef}{Send}} (string msg)
+\begin{DoxyCompactList}\small\item\em Envia un mensaje en forma de arreglo de bytes al servidor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a0a2c3560655621535a6f1df6a945acdf}{Send\+Bytes\+Msg}} (byte\mbox{[}$\,$\mbox{]} byte\+Msg)
+\begin{DoxyCompactList}\small\item\em Envia un mensaje en forma de arreglo de bytes al servidor sin tener que hacer alguna conversión \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a121c5e2ddceeef809807495e72a8c00c}{Receive}} ()
+\begin{DoxyCompactList}\small\item\em Convierte el mensaje recibido del servidor de arreglo de bytes a cadena \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_node_1_1_client_1_1_cliente_a8bd00c8f8e58f268e39220d7e6801e68}{Byte2string}} (byte\mbox{[}$\,$\mbox{]} buffer)
+\begin{DoxyCompactList}\small\item\em Convierte un arreglo de bytes a cadena \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que permite la comunicación con el servidor 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a6630a78d514932777a07a0b55309634f}\label{class_node_1_1_client_1_1_cliente_a6630a78d514932777a07a0b55309634f}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!Cliente@{Cliente}}
+\index{Cliente@{Cliente}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Cliente()}{Cliente()}}
+{\footnotesize\ttfamily Node.\+Client.\+Cliente.\+Cliente (\begin{DoxyParamCaption}\item[{string}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Constructor de {\bfseries{\mbox{\hyperlink{class_node_1_1_client_1_1_cliente}{Cliente}}}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a8bd00c8f8e58f268e39220d7e6801e68}\label{class_node_1_1_client_1_1_cliente_a8bd00c8f8e58f268e39220d7e6801e68}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!Byte2string@{Byte2string}}
+\index{Byte2string@{Byte2string}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Byte2string()}{Byte2string()}}
+{\footnotesize\ttfamily static string Node.\+Client.\+Cliente.\+Byte2string (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convierte un arreglo de bytes a cadena 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve un arreglo de bytes convertido en una cadena
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a65f238d97ceee12dffcb67c5fe63c8ba}\label{class_node_1_1_client_1_1_cliente_a65f238d97ceee12dffcb67c5fe63c8ba}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!Close@{Close}}
+\index{Close@{Close}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void Node.\+Client.\+Cliente.\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cierra la conexión con el servidor 
+
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a121c5e2ddceeef809807495e72a8c00c}\label{class_node_1_1_client_1_1_cliente_a121c5e2ddceeef809807495e72a8c00c}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!Receive@{Receive}}
+\index{Receive@{Receive}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Receive()}{Receive()}}
+{\footnotesize\ttfamily string Node.\+Client.\+Cliente.\+Receive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convierte el mensaje recibido del servidor de arreglo de bytes a cadena 
+
+\begin{DoxyReturn}{Returns}
+Devuelve el mensaje recibido del servidor convertido a cadena
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a74ed33f3bb92099fecaa1b138a966aef}\label{class_node_1_1_client_1_1_cliente_a74ed33f3bb92099fecaa1b138a966aef}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!Send@{Send}}
+\index{Send@{Send}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily void Node.\+Client.\+Cliente.\+Send (\begin{DoxyParamCaption}\item[{string}]{msg }\end{DoxyParamCaption})}
+
+
+
+Envia un mensaje en forma de arreglo de bytes al servidor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Mensaje que se quiere enviar al servidor\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a0a2c3560655621535a6f1df6a945acdf}\label{class_node_1_1_client_1_1_cliente_a0a2c3560655621535a6f1df6a945acdf}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!SendBytesMsg@{SendBytesMsg}}
+\index{SendBytesMsg@{SendBytesMsg}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{SendBytesMsg()}{SendBytesMsg()}}
+{\footnotesize\ttfamily void Node.\+Client.\+Cliente.\+Send\+Bytes\+Msg (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{byte\+Msg }\end{DoxyParamCaption})}
+
+
+
+Envia un mensaje en forma de arreglo de bytes al servidor sin tener que hacer alguna conversión 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte\+Msg} & Mensaje que se quiere enviar al servidor\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_1_1_client_1_1_cliente_a261874bc87854606e617a9c97fe22453}\label{class_node_1_1_client_1_1_cliente_a261874bc87854606e617a9c97fe22453}} 
+\index{Node.Client.Cliente@{Node.Client.Cliente}!Start@{Start}}
+\index{Start@{Start}!Node.Client.Cliente@{Node.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Node.\+Client.\+Cliente.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicia la conexión con el servidor 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+PRIMER SEMESTRE 2021/\+REDES Y COMUNICACIONES DE DATOS/\+Tareas y proyectos/\+Tareas/\+Tarea programada \#2/tarea\+Programada\#2/\+Node/\+Node/\+Client/Cliente.\+cs\end{DoxyCompactItemize}
