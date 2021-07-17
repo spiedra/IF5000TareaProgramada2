@@ -182,6 +182,9 @@ public class Server
     /// <summary>
     /// Envia el fragmento (buffer) del archivo correspondiente
     /// </summary>
+    /// <param name="bufferFile"></param>
+    /// <param name="fileName"></param>
+    /// <param name="nodesAmount"></param>
     private void SendBufferFileToNode(byte[] bufferFile, string fileName, int nodesAmount)
     {
         nodeBusiness.InsertFile(fileName);
@@ -204,7 +207,7 @@ public class Server
         {
             for (int i = 0; i < listBuffersFile.Count; i++)
             {
-                node.MakeParity(listBuffersFile[i], "frag" + i + fileName + ".txt", "Node" + i);
+                node.SaveParity(listBuffersFile[i], "frag" + i + fileName + ".txt", "Node" + i);
             }
         }
     }
@@ -296,11 +299,11 @@ public class Server
                 {
                     if (!listNodes[i].IsAvailable)
                     {
-                        cliente.SendAvailabilityNode(i + 1);
+                        cliente.SendIsAvailabilityNode(i + 1);
                     }
                     else
                     {
-                        cliente.SendAvailabilityNode(-1);
+                        cliente.SendIsAvailabilityNode(-1);
                     }
                 }
             }
