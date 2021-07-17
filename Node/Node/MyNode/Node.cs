@@ -72,8 +72,10 @@ namespace Node.MyNode
                         case "saveParity":
                             string ParityName = MyUtility.SplitTheClientRequest(message, 1);
                             nodeName = MyUtility.SplitTheClientRequest(message, 2);
-                            Thread.Sleep(30);
+                            Console.WriteLine("\n(Case SaveParity) Parity Name: " + ParityName + " nodeName: " + nodeName);
+                            //Thread.Sleep(200);
                             Byte[] parityFile = Encoding.ASCII.GetBytes(c.Receive());
+                            Console.WriteLine("\n(Case saveParity) Tamanio del parityFile es: "+parityFile.Length);
                             SaveFileParity(nodeName, ParityName, parityFile);
                             break;
 
@@ -149,7 +151,7 @@ namespace Node.MyNode
         /// </summary>
         private static void SaveFileParity(string nodeName, string fileName, Byte[] bytes)
         {
-            Console.WriteLine("Guardando el fragmento de paridad del archivo: " + fileName + " en el nodo: " + nodeName);
+            Console.WriteLine("*** Guardando el fragmento de paridad del archivo: " + fileName + " en el nodo: " + nodeName);
             string rutaNombreArchivo = @"../../../Nodes/"+nodeName+"/Parity/" + "/" + fileName;
             using var newFile = new FileStream(rutaNombreArchivo, FileMode.Create, FileAccess.Write);
             newFile.Write(bytes, 0, bytes.Length);

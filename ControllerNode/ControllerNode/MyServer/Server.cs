@@ -243,17 +243,17 @@ namespace ControllerNode.MyServer
             nodeBusiness.InsertFile(fileName);
             List<byte[]> listBuffersFile = CommonMethod.GetListByteArrays(bufferFile, nodesAmount);
             Console.WriteLine("\nCantidad de pedazos de la lista de buffers file: " + listBuffersFile.Count);
-            for (int i = 0; i < listBuffersFile.Count; i++)
-            {
-                string fragName = "Frag" + i + fileName, nodeName = "Node" + i;
-                Console.WriteLine("\nEnviando el fragmento: " + fragName + " al nodo: " + nodeName);
-                nodeBusiness.InsertFragment(fileName, fragName, nodeName);
-                Console.WriteLine("\nGuardando fragmento del archivo en el nodo de la lista: " + listNodes[i].name);
-                Console.WriteLine("\nTamaño del pedazo " + i + " del archivo es: " + listBuffersFile[i].Length);
-                listNodes[i].SaveFilePartition(listBuffersFile[i], fragName, nodeName);
-                Thread.Sleep(40);
-            }
-            //SendBufferParityToNode(listBuffersFile, fileName);
+            //for (int i = 0; i < listBuffersFile.Count; i++)
+            //{
+            //    string fragName = "Frag" + i + fileName, nodeName = "Node" + i;
+            //    Console.WriteLine("\nEnviando el fragmento: " + fragName + " al nodo: " + nodeName);
+            //    nodeBusiness.InsertFragment(fileName, fragName, nodeName);
+            //    Console.WriteLine("\nGuardando fragmento del archivo en el nodo de la lista: " + listNodes[i].name);
+            //    Console.WriteLine("\nTamaño del pedazo " + i + " del archivo es: " + listBuffersFile[i].Length);
+            //    listNodes[i].SaveFilePartition(listBuffersFile[i], fragName, nodeName);
+            //    Thread.Sleep(40);
+            //}
+            SendBufferParityToNode(listBuffersFile, fileName);
         }
 
         /// <summary>
@@ -263,16 +263,16 @@ namespace ControllerNode.MyServer
         /// <param name="fileName">Nombre del archivo</param>
         private void SendBufferParityToNode(List<byte[]> listBuffersFile, string fileName)
         {
-            foreach (Client node in listNodes)
+            for (int j = 0; j < listNodes.Count; j++)
             {
                 for (int i = 0; i < listBuffersFile.Count; i++)
                 {
-                    Console.WriteLine("\nGuardando la paridad en el nodo: " + node.name);
-                    Console.WriteLine("Paridad -> FragName: " + "Frag" + i + fileName + " Node" + i);
-                    Thread.Sleep(30);
-                    node.SaveParity(listBuffersFile[i], "Frag" + i + fileName, "Node" + i);
+                    Console.WriteLine("\nGuardando la paridad en el nodo: " + listNodes[j].name);
+                    Console.WriteLine("Paridad -> FragName: " + "Frag" + i + fileName + " Node" + j + " Tamanio del pedazo de paridad: " + listBuffersFile[i].Length);
+                    listNodes[j].SaveParity(listBuffersFile[i], "Frag" + i + fileName, "Node" + j);
+                    Thread.Sleep(500);
                 }
-                Thread.Sleep(35);
+                Thread.Sleep(300);
             }
         }
 

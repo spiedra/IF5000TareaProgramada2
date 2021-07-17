@@ -29,7 +29,7 @@ namespace saSearch.GUI
         private void btn_enviar_Click(object sender, EventArgs e)
         {
             Byte[] bytes = Utility.ConvertFileToByteArray(fileDirectory);
-            c.Send("archivo*"+name+"*"+tamano);//envio
+            c.Send("archivo*" + name + "*" + tamano);//envio
             Thread.Sleep(30);
             c.sendBytesMsg(bytes);
             //
@@ -61,7 +61,8 @@ namespace saSearch.GUI
         {
             this.fileDirectory = fileInfo.FullName;
             tb_nombre.Text = this.name = fileInfo.Name;
-            tb_tamano.Text = this.tamano = Convert.ToString(fileInfo.Length) + " bytes";
+            tb_tamano.Text  = Convert.ToString(fileInfo.Length) + " bytes";
+            this.tamano = Convert.ToString(fileInfo.Length);
             tb_acceso.Text = this.ult_acceso = fileInfo.LastAccessTime.ToString();
             tb_mod.Text = this.ult_mod = fileInfo.LastWriteTime.ToString();
             tb_ubicacion.Text = fileInfo.DirectoryName;

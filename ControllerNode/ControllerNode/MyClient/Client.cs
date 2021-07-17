@@ -54,7 +54,7 @@ namespace ControllerNode.MyClient
         public void SaveParity(byte[] buffer, string fragName, string nodeName)
         {
             Socket.Send(Encoding.ASCII.GetBytes("saveParity*" + fragName + "*" + nodeName));
-            Thread.Sleep(30);
+            Thread.Sleep(220);
             Socket.Send(buffer);
         }
 
