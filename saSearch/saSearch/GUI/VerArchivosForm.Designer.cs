@@ -31,16 +31,19 @@ namespace saSearch.GUI
         {
             this.gbxListaArchivos = new System.Windows.Forms.GroupBox();
             this.dgvListaArchivos = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tamaño = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ult_Modificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ult_modificación = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ult_acceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tamano = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abrir = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Name2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tamaño = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ult_Modificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rtb_contenido = new System.Windows.Forms.RichTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbxListaArchivos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxListaArchivos
@@ -69,27 +72,6 @@ namespace saSearch.GUI
             this.dgvListaArchivos.Size = new System.Drawing.Size(701, 268);
             this.dgvListaArchivos.TabIndex = 0;
             this.dgvListaArchivos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaArchivos_CellContentClick);
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "FileName";
-            this.Name.MinimumWidth = 6;
-            this.Name.Name = "Name";
-            this.Name.Width = 125;
-            // 
-            // Tamaño
-            // 
-            this.Tamaño.HeaderText = "Tamaño";
-            this.Tamaño.MinimumWidth = 6;
-            this.Tamaño.Name = "Tamaño";
-            this.Tamaño.Width = 125;
-            // 
-            // Ult_Modificacion
-            // 
-            this.Ult_Modificacion.HeaderText = "Ult.Modificación";
-            this.Ult_Modificacion.MinimumWidth = 6;
-            this.Ult_Modificacion.Name = "Ult_Modificacion";
-            this.Ult_Modificacion.Width = 125;
             // 
             // Nombre
             // 
@@ -128,18 +110,59 @@ namespace saSearch.GUI
             this.abrir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.abrir.Width = 125;
             // 
+            // Name
+            // 
+            this.Name2.HeaderText = "FileName";
+            this.Name2.MinimumWidth = 6;
+            this.Name2.Name = "Name";
+            this.Name2.Width = 125;
+            // 
+            // Tamaño
+            // 
+            this.Tamaño.HeaderText = "Tamaño";
+            this.Tamaño.MinimumWidth = 6;
+            this.Tamaño.Name = "Tamaño";
+            this.Tamaño.Width = 125;
+            // 
+            // Ult_Modificacion
+            // 
+            this.Ult_Modificacion.HeaderText = "Ult.Modificación";
+            this.Ult_Modificacion.MinimumWidth = 6;
+            this.Ult_Modificacion.Name = "Ult_Modificacion";
+            this.Ult_Modificacion.Width = 125;
+            // 
+            // rtb_contenido
+            // 
+            this.rtb_contenido.Location = new System.Drawing.Point(24, 39);
+            this.rtb_contenido.Name = "rtb_contenido";
+            this.rtb_contenido.Size = new System.Drawing.Size(701, 230);
+            this.rtb_contenido.TabIndex = 3;
+            this.rtb_contenido.Text = "";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rtb_contenido);
+            this.groupBox1.Location = new System.Drawing.Point(13, 353);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(749, 295);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Contenido del archivo";
+            // 
             // VerArchivosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 328);
+            this.ClientSize = new System.Drawing.Size(776, 684);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbxListaArchivos);
-           // this.Name = "VerArchivosForm";
+            this.Name = "VerArchivosForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver archivos";
             this.gbxListaArchivos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -153,8 +176,10 @@ namespace saSearch.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn Ult_acceso;
         private System.Windows.Forms.DataGridViewTextBoxColumn tamano;
         private System.Windows.Forms.DataGridViewButtonColumn abrir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tamaño;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ult_Modificacion;
+        private System.Windows.Forms.RichTextBox rtb_contenido;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
