@@ -19,10 +19,10 @@ namespace saSearch.GUI
     {
         Cliente c;
         Thread t;
-        List<string> archivos;
+        List<string> files;
         public VerArchivosForm()
         {
-            archivos = new List<string>();
+            files = new List<string>();
             c = Cliente.GetSingletonCliente();
             //t = new Thread(this.escucha);
             //t.Start();
@@ -31,7 +31,14 @@ namespace saSearch.GUI
 
         private void dgvListaArchivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("ajajajja");
+            if (this.files.Count != 0)
+            {
+                this.rtb_contenido.Text = this.files.ElementAt(e.RowIndex);
+            }
+            else
+            {
+                MessageBox.Show("No hay texto que mostrar");
+            }
         }
 
         public void escucha()
@@ -49,9 +56,7 @@ namespace saSearch.GUI
                             break;
 
                         case "fileResponse":
-
-                            this.archivos.Add(Encoding.Default.GetString(c.ReceiveByteMsg()));
-
+                            this.files.Add(Encoding.Default.GetString(c.ReceiveByteMsg()));
                             break;
                     }
                 }
