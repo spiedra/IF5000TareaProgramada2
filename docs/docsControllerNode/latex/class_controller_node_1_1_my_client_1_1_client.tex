@@ -1,0 +1,199 @@
+\hypertarget{class_controller_node_1_1_my_client_1_1_client}{}\doxysection{Controller\+Node.\+My\+Client.\+Client Class Reference}
+\label{class_controller_node_1_1_my_client_1_1_client}\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+
+
+Clase donde se encuentran todos los metodos para la comunicacion entre servidor-\/cliente  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_acf843905e865cf222c73ca10d24b839d}{Client}} (\mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a73555108e874a5f72990f10175001739}{Socket}} socket)
+\begin{DoxyCompactList}\small\item\em Constructor por defecto de la clase {\bfseries{\mbox{\hyperlink{namespace_controller_node_1_1_my_client}{My\+Client}}}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a9ddcdb256ad7da3da5cb804f06e12f04}{Save\+File\+Partition}} (byte\mbox{[}$\,$\mbox{]} buffer, string frag\+Name, string node\+Name)
+\begin{DoxyCompactList}\small\item\em Envia al nodo correspondiente la información necesaria para guardar los fragmentos de los archivos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_adec294cdbe9bda9fe43f08da04dfe432}{Save\+Parity}} (byte\mbox{[}$\,$\mbox{]} buffer, string frag\+Name, string node\+Name)
+\begin{DoxyCompactList}\small\item\em Envia al nodo correspondiente la información necesaria para guardar los fragmentos de los archivos realizando redundancia de datos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a60c184fa3b0b3f1fbe6379fa3679646d}{Send\+Meta\+Data\+File\+To\+Node}} (byte\mbox{[}$\,$\mbox{]} buffer, string file\+Name, string node\+Name)
+\begin{DoxyCompactList}\small\item\em Envia al nodo los fragmentos de los meta datos del archivo asociado \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a23c634f3afe63c4e9030451bde84fc88}{Send\+The\+Requested\+To\+Sa\+Search}} (byte\mbox{[}$\,$\mbox{]} buffer, string protocol)
+\begin{DoxyCompactList}\small\item\em Envia los archivos y metadatos solicitados al sa\+Search \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a4bc318f559c243fe2353563dc562a702}{Reques\+Fragment\+To\+Node}} (string protocol, string file\+Name, int index)
+\begin{DoxyCompactList}\small\item\em Le solicita al nodo correspondiente los fragmetos de los archivos o de los meta datos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a61a1ec799187112fead68ba8b4df5f05}{Send\+Is\+Availability\+Node}} (int node\+Index)
+\begin{DoxyCompactList}\small\item\em Envia al sa\+Search el indentificador del nodo que esta apagando \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a547bad43581e44651dbcd0b65a569126}\label{class_controller_node_1_1_my_client_1_1_client_a547bad43581e44651dbcd0b65a569126}} 
+void {\bfseries Create\+Directory\+Node} (int index)
+\item 
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a56f3e47afe56c38a4f2607418084d6bc}\label{class_controller_node_1_1_my_client_1_1_client_a56f3e47afe56c38a4f2607418084d6bc}} 
+void {\bfseries Delete\+Node\+Directories} (int index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Socket \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a73555108e874a5f72990f10175001739}{Socket}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Contiene la instancia del socket que se asigno en el momento que se hizo conexión \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a178ba5758e7cc8142eaca418b0e51738}{Is\+Available}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Permite verificar si un nodo esta apagado o encendido \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase donde se encuentran todos los metodos para la comunicacion entre servidor-\/cliente 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_acf843905e865cf222c73ca10d24b839d}\label{class_controller_node_1_1_my_client_1_1_client_acf843905e865cf222c73ca10d24b839d}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!Client@{Client}}
+\index{Client@{Client}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}}
+{\footnotesize\ttfamily Controller\+Node.\+My\+Client.\+Client.\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_controller_node_1_1_my_client_1_1_client_a73555108e874a5f72990f10175001739}{Socket}}}]{socket }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto de la clase {\bfseries{\mbox{\hyperlink{namespace_controller_node_1_1_my_client}{My\+Client}}}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & Instancia del socket al que el cliente esta conectado\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a4bc318f559c243fe2353563dc562a702}\label{class_controller_node_1_1_my_client_1_1_client_a4bc318f559c243fe2353563dc562a702}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!RequesFragmentToNode@{RequesFragmentToNode}}
+\index{RequesFragmentToNode@{RequesFragmentToNode}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{RequesFragmentToNode()}{RequesFragmentToNode()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Client.\+Client.\+Reques\+Fragment\+To\+Node (\begin{DoxyParamCaption}\item[{string}]{protocol,  }\item[{string}]{file\+Name,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Le solicita al nodo correspondiente los fragmetos de los archivos o de los meta datos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em protocol} & Protocolo por donde el sa\+Search va a recibir los datos\\
+\hline
+{\em file\+Name} & Nombre del archivo\\
+\hline
+{\em index} & Indice que permite identificar los archivos\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a9ddcdb256ad7da3da5cb804f06e12f04}\label{class_controller_node_1_1_my_client_1_1_client_a9ddcdb256ad7da3da5cb804f06e12f04}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!SaveFilePartition@{SaveFilePartition}}
+\index{SaveFilePartition@{SaveFilePartition}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{SaveFilePartition()}{SaveFilePartition()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Client.\+Client.\+Save\+File\+Partition (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{buffer,  }\item[{string}]{frag\+Name,  }\item[{string}]{node\+Name }\end{DoxyParamCaption})}
+
+
+
+Envia al nodo correspondiente la información necesaria para guardar los fragmentos de los archivos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Fragmento del archivo\\
+\hline
+{\em frag\+Name} & Nombre del fragmento del archivo\\
+\hline
+{\em node\+Name} & Nombre del nodo en donde se van a guardar los fragmentos\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_adec294cdbe9bda9fe43f08da04dfe432}\label{class_controller_node_1_1_my_client_1_1_client_adec294cdbe9bda9fe43f08da04dfe432}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!SaveParity@{SaveParity}}
+\index{SaveParity@{SaveParity}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{SaveParity()}{SaveParity()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Client.\+Client.\+Save\+Parity (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{buffer,  }\item[{string}]{frag\+Name,  }\item[{string}]{node\+Name }\end{DoxyParamCaption})}
+
+
+
+Envia al nodo correspondiente la información necesaria para guardar los fragmentos de los archivos realizando redundancia de datos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Fragmento del archivo\\
+\hline
+{\em frag\+Name} & Nombre del fragmento del archivo\\
+\hline
+{\em node\+Name} & Nombre del nodo en donde se van a guardar los fragmentos\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a61a1ec799187112fead68ba8b4df5f05}\label{class_controller_node_1_1_my_client_1_1_client_a61a1ec799187112fead68ba8b4df5f05}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!SendIsAvailabilityNode@{SendIsAvailabilityNode}}
+\index{SendIsAvailabilityNode@{SendIsAvailabilityNode}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{SendIsAvailabilityNode()}{SendIsAvailabilityNode()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Client.\+Client.\+Send\+Is\+Availability\+Node (\begin{DoxyParamCaption}\item[{int}]{node\+Index }\end{DoxyParamCaption})}
+
+
+
+Envia al sa\+Search el indentificador del nodo que esta apagando 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Index} & Identificador del nodo\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a60c184fa3b0b3f1fbe6379fa3679646d}\label{class_controller_node_1_1_my_client_1_1_client_a60c184fa3b0b3f1fbe6379fa3679646d}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!SendMetaDataFileToNode@{SendMetaDataFileToNode}}
+\index{SendMetaDataFileToNode@{SendMetaDataFileToNode}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{SendMetaDataFileToNode()}{SendMetaDataFileToNode()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Client.\+Client.\+Send\+Meta\+Data\+File\+To\+Node (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{buffer,  }\item[{string}]{file\+Name,  }\item[{string}]{node\+Name }\end{DoxyParamCaption})}
+
+
+
+Envia al nodo los fragmentos de los meta datos del archivo asociado 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Fragmento del archivo\\
+\hline
+{\em file\+Name} & Nombre del archivo\\
+\hline
+{\em node\+Name} & Nombre del nodo en donde se van a guardar los fragmentos\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a23c634f3afe63c4e9030451bde84fc88}\label{class_controller_node_1_1_my_client_1_1_client_a23c634f3afe63c4e9030451bde84fc88}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!SendTheRequestedToSaSearch@{SendTheRequestedToSaSearch}}
+\index{SendTheRequestedToSaSearch@{SendTheRequestedToSaSearch}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{SendTheRequestedToSaSearch()}{SendTheRequestedToSaSearch()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Client.\+Client.\+Send\+The\+Requested\+To\+Sa\+Search (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{buffer,  }\item[{string}]{protocol }\end{DoxyParamCaption})}
+
+
+
+Envia los archivos y metadatos solicitados al sa\+Search 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Fragmento del archivo\\
+\hline
+{\em protocol} & Protocolo por donde el sa\+Search va a recibir los datos\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a178ba5758e7cc8142eaca418b0e51738}\label{class_controller_node_1_1_my_client_1_1_client_a178ba5758e7cc8142eaca418b0e51738}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!IsAvailable@{IsAvailable}}
+\index{IsAvailable@{IsAvailable}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{IsAvailable}{IsAvailable}}
+{\footnotesize\ttfamily bool Controller\+Node.\+My\+Client.\+Client.\+Is\+Available\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Permite verificar si un nodo esta apagado o encendido 
+
+\mbox{\Hypertarget{class_controller_node_1_1_my_client_1_1_client_a73555108e874a5f72990f10175001739}\label{class_controller_node_1_1_my_client_1_1_client_a73555108e874a5f72990f10175001739}} 
+\index{ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}!Socket@{Socket}}
+\index{Socket@{Socket}!ControllerNode.MyClient.Client@{ControllerNode.MyClient.Client}}
+\doxysubsubsection{\texorpdfstring{Socket}{Socket}}
+{\footnotesize\ttfamily Socket Controller\+Node.\+My\+Client.\+Client.\+Socket\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Contiene la instancia del socket que se asigno en el momento que se hizo conexión 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+PRIMER SEMESTRE 2021/\+REDES Y COMUNICACIONES DE DATOS/\+Tareas y proyectos/\+Tareas/\+Tarea programada \#2/tarea\+Programada\#2/\+Controller\+Node/\+Controller\+Node/\+My\+Client/Client.\+cs\end{DoxyCompactItemize}

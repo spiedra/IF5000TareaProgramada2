@@ -1,0 +1,213 @@
+\hypertarget{class_controller_node_1_1_my_server_1_1_server}{}\doxysection{Controller\+Node.\+My\+Server.\+Server Class Reference}
+\label{class_controller_node_1_1_my_server_1_1_server}\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+
+
+Clase que cumple la función del servidor del sistema  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_aaabc94fa6eee6821823be23a99b9f1b9}{Server}} (string ip, int port)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase {\bfseries{\mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server}{Server}}}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_addff0b3ae11d66c9be03e15baad92c49}{Start}} ()
+\begin{DoxyCompactList}\small\item\em Escucha las conexiones de los clientes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_abfea4733c6145641c93ce408f6ed2149}{Client\+Connection}} (object s)
+\begin{DoxyCompactList}\small\item\em Permite la ejecucion del hilo del cliente \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_a4fc916feb138b67ad3012792a2ec6a3e}{Create\+Nodes}} (int cantidad\+Nodos)
+\begin{DoxyCompactList}\small\item\em Registra la ruta de los nodos en la base de datos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_accab2954baeedf9956c8fe3bdd94e17e}{Delete\+Nodes}} ()
+\begin{DoxyCompactList}\small\item\em Elimina la ruta de los nodos guardados en la base de datos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_a7c173a050e23d0318383df69a009ebac}{Send\+Meta\+Data\+Buffer\+To\+Node}} (string message, int cant\+Nodes)
+\begin{DoxyCompactList}\small\item\em Envia a cada nodo los meta datos del archivo \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_a2e8fb7afd589155d8a5f0ab6c2e5436b}{Set\+Availability}} (bool available, int node\+Id)
+\begin{DoxyCompactList}\small\item\em Asigna la disponibilidad de los nodos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_a731630cfa50ad831191b55ba2081579e}{Request\+Meta\+Data\+Fragments\+To\+Node}} (Socket s\+\_\+client)
+\begin{DoxyCompactList}\small\item\em Solicita a los nodos los fragmentos de los meta datos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_ab9de155eee7d8b9f0bd87946f6e43343}{Request\+File\+Fragments\+To\+Node}} (Socket s\+\_\+client)
+\begin{DoxyCompactList}\small\item\em Solicita a los nodos los fragmentos de los archivos \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_a7d606eedad8d6dbfaa05d971183de421}{Request\+Data\+To\+Available\+Nodes}} (int index, string file\+Name)
+\begin{DoxyCompactList}\small\item\em Verfica cuales nodos estan disponibles y les hace las solicitud de los fragmentos solicitados en los nodos que estan disponibles en ese momente \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server_aec7e29e7e0474b582bcadbdcb668d6b4}{Send\+Fragments\+To\+Sa\+Search}} (Socket s\+\_\+client, string protocol)
+\begin{DoxyCompactList}\small\item\em Envia al sa\+Search los archivos o los metadatos \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que cumple la función del servidor del sistema 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_aaabc94fa6eee6821823be23a99b9f1b9}\label{class_controller_node_1_1_my_server_1_1_server_aaabc94fa6eee6821823be23a99b9f1b9}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!Server@{Server}}
+\index{Server@{Server}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}}
+{\footnotesize\ttfamily Controller\+Node.\+My\+Server.\+Server.\+Server (\begin{DoxyParamCaption}\item[{string}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase {\bfseries{\mbox{\hyperlink{class_controller_node_1_1_my_server_1_1_server}{Server}}}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_abfea4733c6145641c93ce408f6ed2149}\label{class_controller_node_1_1_my_server_1_1_server_abfea4733c6145641c93ce408f6ed2149}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!ClientConnection@{ClientConnection}}
+\index{ClientConnection@{ClientConnection}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{ClientConnection()}{ClientConnection()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Client\+Connection (\begin{DoxyParamCaption}\item[{object}]{s }\end{DoxyParamCaption})}
+
+
+
+Permite la ejecucion del hilo del cliente 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_a4fc916feb138b67ad3012792a2ec6a3e}\label{class_controller_node_1_1_my_server_1_1_server_a4fc916feb138b67ad3012792a2ec6a3e}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!CreateNodes@{CreateNodes}}
+\index{CreateNodes@{CreateNodes}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{CreateNodes()}{CreateNodes()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Create\+Nodes (\begin{DoxyParamCaption}\item[{int}]{cantidad\+Nodos }\end{DoxyParamCaption})}
+
+
+
+Registra la ruta de los nodos en la base de datos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cantidad\+Nodos} & Cantidad de nodos\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_accab2954baeedf9956c8fe3bdd94e17e}\label{class_controller_node_1_1_my_server_1_1_server_accab2954baeedf9956c8fe3bdd94e17e}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!DeleteNodes@{DeleteNodes}}
+\index{DeleteNodes@{DeleteNodes}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{DeleteNodes()}{DeleteNodes()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Delete\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Elimina la ruta de los nodos guardados en la base de datos 
+
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_a7d606eedad8d6dbfaa05d971183de421}\label{class_controller_node_1_1_my_server_1_1_server_a7d606eedad8d6dbfaa05d971183de421}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!RequestDataToAvailableNodes@{RequestDataToAvailableNodes}}
+\index{RequestDataToAvailableNodes@{RequestDataToAvailableNodes}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{RequestDataToAvailableNodes()}{RequestDataToAvailableNodes()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Request\+Data\+To\+Available\+Nodes (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Verfica cuales nodos estan disponibles y les hace las solicitud de los fragmentos solicitados en los nodos que estan disponibles en ese momente 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Indice del nodo que no esta disponible\\
+\hline
+{\em file\+Name} & Nombre del archivo\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_ab9de155eee7d8b9f0bd87946f6e43343}\label{class_controller_node_1_1_my_server_1_1_server_ab9de155eee7d8b9f0bd87946f6e43343}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!RequestFileFragmentsToNode@{RequestFileFragmentsToNode}}
+\index{RequestFileFragmentsToNode@{RequestFileFragmentsToNode}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{RequestFileFragmentsToNode()}{RequestFileFragmentsToNode()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Request\+File\+Fragments\+To\+Node (\begin{DoxyParamCaption}\item[{Socket}]{s\+\_\+client }\end{DoxyParamCaption})}
+
+
+
+Solicita a los nodos los fragmentos de los archivos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s\+\_\+client} & Socket asociado al cliente\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_a731630cfa50ad831191b55ba2081579e}\label{class_controller_node_1_1_my_server_1_1_server_a731630cfa50ad831191b55ba2081579e}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!RequestMetaDataFragmentsToNode@{RequestMetaDataFragmentsToNode}}
+\index{RequestMetaDataFragmentsToNode@{RequestMetaDataFragmentsToNode}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{RequestMetaDataFragmentsToNode()}{RequestMetaDataFragmentsToNode()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Request\+Meta\+Data\+Fragments\+To\+Node (\begin{DoxyParamCaption}\item[{Socket}]{s\+\_\+client }\end{DoxyParamCaption})}
+
+
+
+Solicita a los nodos los fragmentos de los meta datos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s\+\_\+client} & Socket asociado al cliente\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_aec7e29e7e0474b582bcadbdcb668d6b4}\label{class_controller_node_1_1_my_server_1_1_server_aec7e29e7e0474b582bcadbdcb668d6b4}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!SendFragmentsToSaSearch@{SendFragmentsToSaSearch}}
+\index{SendFragmentsToSaSearch@{SendFragmentsToSaSearch}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{SendFragmentsToSaSearch()}{SendFragmentsToSaSearch()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Send\+Fragments\+To\+Sa\+Search (\begin{DoxyParamCaption}\item[{Socket}]{s\+\_\+client,  }\item[{string}]{protocol }\end{DoxyParamCaption})}
+
+
+
+Envia al sa\+Search los archivos o los metadatos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s\+\_\+client} & Socket asociado al cliente\\
+\hline
+{\em protocol} & Protocolo con el que se comunica con el cliente\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_a7c173a050e23d0318383df69a009ebac}\label{class_controller_node_1_1_my_server_1_1_server_a7c173a050e23d0318383df69a009ebac}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!SendMetaDataBufferToNode@{SendMetaDataBufferToNode}}
+\index{SendMetaDataBufferToNode@{SendMetaDataBufferToNode}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{SendMetaDataBufferToNode()}{SendMetaDataBufferToNode()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Send\+Meta\+Data\+Buffer\+To\+Node (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{int}]{cant\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Envia a cada nodo los meta datos del archivo 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Mensaje recibido del cliente\\
+\hline
+{\em cant\+Nodes} & Cantidad de nodos\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_a2e8fb7afd589155d8a5f0ab6c2e5436b}\label{class_controller_node_1_1_my_server_1_1_server_a2e8fb7afd589155d8a5f0ab6c2e5436b}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!SetAvailability@{SetAvailability}}
+\index{SetAvailability@{SetAvailability}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{SetAvailability()}{SetAvailability()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Set\+Availability (\begin{DoxyParamCaption}\item[{bool}]{available,  }\item[{int}]{node\+Id }\end{DoxyParamCaption})}
+
+
+
+Asigna la disponibilidad de los nodos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em available} & \\
+\hline
+{\em node\+Id} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_controller_node_1_1_my_server_1_1_server_addff0b3ae11d66c9be03e15baad92c49}\label{class_controller_node_1_1_my_server_1_1_server_addff0b3ae11d66c9be03e15baad92c49}} 
+\index{ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}!Start@{Start}}
+\index{Start@{Start}!ControllerNode.MyServer.Server@{ControllerNode.MyServer.Server}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Controller\+Node.\+My\+Server.\+Server.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Escucha las conexiones de los clientes 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+PRIMER SEMESTRE 2021/\+REDES Y COMUNICACIONES DE DATOS/\+Tareas y proyectos/\+Tareas/\+Tarea programada \#2/tarea\+Programada\#2/\+Controller\+Node/\+Controller\+Node/\+My\+Server/Server.\+cs\end{DoxyCompactItemize}
