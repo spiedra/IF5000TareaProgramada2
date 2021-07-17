@@ -29,7 +29,7 @@ namespace saSearch.GUI
         private void btn_enviar_Click(object sender, EventArgs e)
         {
             Byte[] bytes = Utility.ConvertFileToByteArray(fileDirectory);
-            c.Send("archivo*"+name);
+            c.Send("archivo*"+name+"*"+tamano);
             Thread.Sleep(30);
             c.sendBytesMsg(bytes);
             //
