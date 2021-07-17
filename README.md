@@ -22,3 +22,8 @@ Este repositorio contiene una simulación de un sistema de archivos (SA File Sys
 - ControllerNode
 
 ![Diagrama_de_clases_ControllerNode_1](https://user-images.githubusercontent.com/79825499/126016369-e8d65bc1-add5-4987-982f-8483e0de23c1.png)
+
+- Node
+
+![Diagrama_en_blanco](https://user-images.githubusercontent.com/79825499/126024221-e6b293e3-ea6c-490a-95f3-ac634ac1ade4.png)
+
