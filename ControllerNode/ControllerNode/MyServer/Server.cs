@@ -89,7 +89,7 @@ namespace ControllerNode.MyServer
                 s_Client = s_Server.Accept();
                 t = new Thread(ClientConnection);
                 t.Start(s_Client);
-                Console.Write("Se ha conectado un cliente...");
+                Console.Write("\nSe ha conectado un cliente...");
             }
         }
 

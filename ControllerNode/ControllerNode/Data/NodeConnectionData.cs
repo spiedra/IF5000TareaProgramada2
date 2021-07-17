@@ -105,8 +105,9 @@ namespace ControllerNode.Data
         private int ReadGetNumberNodes()
         {
             this.sqlDataReader.Read();
+            var numberNodes = this.sqlDataReader.GetInt32(0);
             this.sqlConnection.Close();
-            return this.sqlDataReader.GetInt32(0);
+            return numberNodes;
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace ControllerNode.Data
         /// <returns>Devuleve 1 si existe una nuevo configuracion de otra manera 0</returns>
         public int IsNewConfigFlag()
         {
-            string commandText = "dbo.IS_NEW_CONFIG";
+            string commandText = "dbo.sp_IS_NEW_CONFIG";
             InitSqlClientComponents(commandText);
             ExcecuteReader();
             return ReadIsNewConfigFlag();
@@ -145,7 +146,7 @@ namespace ControllerNode.Data
         /// </summary>
         public void UpdateCongfigFlag()
         {
-            string commandText = "dbo.DELETE_REGISTER_CONFIG";
+            string commandText = "dbo.sp_DELETE_REGISTER_CONFIG";
             InitSqlClientComponents(commandText);
             ExecuteNonQuery();
         }
@@ -157,8 +158,9 @@ namespace ControllerNode.Data
         private int ReadIsNewConfigFlag()
         {
             this.sqlDataReader.Read();
+            var response = this.sqlDataReader.GetInt32(0); 
             this.sqlConnection.Close();
-            return this.sqlDataReader.GetInt32(0);
+            return response;
         }
 
         /// <summary>
@@ -212,7 +214,6 @@ namespace ControllerNode.Data
         {
             this.sqlConnection.Open();
             this.sqlCommand.CommandType = CommandType.StoredProcedure;
-            this.sqlDataReader = this.sqlCommand.ExecuteReader();
         }
     }
 }
