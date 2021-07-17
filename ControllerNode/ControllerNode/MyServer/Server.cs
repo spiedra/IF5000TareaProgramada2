@@ -60,6 +60,11 @@ namespace ControllerNode.MyServer
         private readonly NodeConnectionBusiness nodeBusiness;
 
         /// <summary>
+        /// Contiene los nodos ingresados
+        /// </summary>
+        private int contNodes;
+
+        /// <summary>
         /// Constructor de la clase <b>Server</b>
         /// </summary>
         /// <param name="ip"></param>
@@ -75,6 +80,7 @@ namespace ControllerNode.MyServer
             s_Server = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             s_Server.Bind(endPoint);
             s_Server.Listen(10);
+            contNodes = 0;
         }
 
         /// <summary>
@@ -85,11 +91,11 @@ namespace ControllerNode.MyServer
             Thread t;
             while (true)
             {
-                Console.Write("Esperando conexiones...");
+                Console.Write("Esperando conexiones...\n");
                 s_Client = s_Server.Accept();
                 t = new Thread(ClientConnection);
                 t.Start(s_Client);
-                Console.Write("\nSe ha conectado un cliente...");
+                Console.Write("Se ha conectado un cliente...\n");
             }
         }
 
@@ -116,7 +122,7 @@ namespace ControllerNode.MyServer
                         break;
 
                     case "infoArchivo":
-                        SendMetaDataBufferToNode(message, nodeBusiness.GetNumberNodes());
+                        //SendMetaDataBufferToNode(message, nodeBusiness.GetNumberNodes());
                         break;
 
                     case "getMetaData":
@@ -127,11 +133,13 @@ namespace ControllerNode.MyServer
                         RequestFileFragmentsToNode(s_Client);
                         break;
 
-                    case "archivo": // posible error en la sincronizacion del mensaje
-                        buffer = new byte[30000000];
+                    case "archivo":
+                        nodeBusiness.UpdateCongfigFlag();
+                        var fileName = CommonMethod.SplitTheClientRequest(message, 1);
+                        buffer = new byte[Convert.ToInt32(CommonMethod.SplitTheClientRequest(message, 2))];
                         s_Client.Receive(buffer);
-
-                        SendBufferFileToNode(buffer, CommonMethod.SplitTheClientRequest(message, 1), nodeBusiness.GetNumberNodes());
+                        Console.WriteLine("Recibiendo el archivo: " + fileName);
+                        SendBufferFileToNode(buffer, fileName, nodeBusiness.GetNumberNodes());
                         break;
 
                     case "fragMetaData":
@@ -180,7 +188,7 @@ namespace ControllerNode.MyServer
             nodeBusiness.DeleteNodes();
             for (int i = 0; i < cantidadNodos; i++)
             {
-                nodeBusiness.RegisterNode("Node"+i);
+                nodeBusiness.RegisterNode("Node" + i);
             }
         }
 
@@ -204,10 +212,11 @@ namespace ControllerNode.MyServer
         public void SendMetaDataBufferToNode(string message, int cantNodes)
         {
             string fileName = CommonMethod.SplitTheClientRequest(message, 1);
+            Console.WriteLine("Recibiendo los meta datos del archivo: " + fileName);
             List<byte[]> listBufferMetaData = CommonMethod.GetListBufferMetaData(message, cantNodes, fileName);
             for (int i = 0; i < listBufferMetaData.Count; i++)
             {
-                listNodes[i].SendMetaDataFileToNode(listBufferMetaData[i], fileName, "Node" + i);
+                listNodes[i].SendMetaDataFileToNode(listBufferMetaData[i], "MetaData" + i + fileName, "Node" + i);
             }
         }
 
@@ -218,7 +227,8 @@ namespace ControllerNode.MyServer
         /// <param name="nodeId"></param>
         public void SetAvailability(bool available, int nodeId)
         {
-            listNodes[nodeId].IsAvailable = available;
+            listNodes[nodeId - 1].IsAvailable = available;
+            Console.WriteLine("\nDisponibilidad del nodo: " + nodeId + " es " + listNodes[nodeId - 1].IsAvailable);
         }
 
         /// <summary>
@@ -229,15 +239,21 @@ namespace ControllerNode.MyServer
         /// <param name="nodesAmount">Cantidad de nodos en el sistema</param>
         private void SendBufferFileToNode(byte[] bufferFile, string fileName, int nodesAmount)
         {
+            Console.WriteLine("Cargando...");
             nodeBusiness.InsertFile(fileName);
             List<byte[]> listBuffersFile = CommonMethod.GetListByteArrays(bufferFile, nodesAmount);
+            Console.WriteLine("\nCantidad de pedazos de la lista de buffers file: " + listBuffersFile.Count);
             for (int i = 0; i < listBuffersFile.Count; i++)
             {
-                string fragName = "frag" + i + fileName + ".txt", nodeName = "Node" + i;
+                string fragName = "Frag" + i + fileName, nodeName = "Node" + i;
+                Console.WriteLine("\nEnviando el fragmento: " + fragName + " al nodo: " + nodeName);
                 nodeBusiness.InsertFragment(fileName, fragName, nodeName);
+                Console.WriteLine("\nGuardando fragmento del archivo en el nodo de la lista: " + listNodes[i].name);
+                Console.WriteLine("\nTamaño del pedazo " + i + " del archivo es: " + listBuffersFile[i].Length);
                 listNodes[i].SaveFilePartition(listBuffersFile[i], fragName, nodeName);
+                Thread.Sleep(40);
             }
-            SendBufferParityToNode(listBuffersFile, fileName);
+            //SendBufferParityToNode(listBuffersFile, fileName);
         }
 
         /// <summary>
@@ -251,8 +267,12 @@ namespace ControllerNode.MyServer
             {
                 for (int i = 0; i < listBuffersFile.Count; i++)
                 {
-                    node.SaveParity(listBuffersFile[i], "frag" + i + fileName + ".txt", "Node" + i);
+                    Console.WriteLine("\nGuardando la paridad en el nodo: " + node.name);
+                    Console.WriteLine("Paridad -> FragName: " + "Frag" + i + fileName + " Node" + i);
+                    Thread.Sleep(30);
+                    node.SaveParity(listBuffersFile[i], "Frag" + i + fileName, "Node" + i);
                 }
+                Thread.Sleep(35);
             }
         }
 
@@ -270,11 +290,11 @@ namespace ControllerNode.MyServer
                 {
                     if (!listNodes[j].IsAvailable)
                     {
-                        RequestDataToAvailableNodes(j, listFileNames[i] + "MetaData");
+                        RequestDataToAvailableNodes(j, "MetaData" + i + listFileNames[i]);
                     }
                     else
                     {
-                        listNodes[j].RequesFragmentToNode("getMetaData", listFileNames[i] + "MetaData", i);
+                        listNodes[j].RequesFragmentToNode("getMetaData", "MetaData" + i + listFileNames[i], i);
                     }
                 }
                 SendFragmentsToSaSearch(s_client, "metaDataResponse");
@@ -290,15 +310,21 @@ namespace ControllerNode.MyServer
         {
             if (identificador == 1)
             {
+                Console.WriteLine("\nCliente (saSearch) agregado");
                 listaClientes.Add(new Client(s_Client));
             }
             else
             {
-                listNodes.Add(new Client(s_Client));
+                Client client = new(s_Client);
+                client.name = "Node " + contNodes;
                 if (nodeBusiness.IsNewConfigFlag() == 1)
                 {
-                    listNodes[nodeBusiness.GetNumberNodes() - 1].RestoreNode(nodeBusiness.GetNumberNodes() - 1);
+                    client.RestoreNode(contNodes);
+                    Console.WriteLine("Se ha restaurado el nodo: " + contNodes);
+                    contNodes++;
                 }
+                Console.WriteLine("\nCliente (Node) agregado");
+                listNodes.Add(client);
             }
         }
 
@@ -374,6 +400,7 @@ namespace ControllerNode.MyServer
                     {
                         if (!listNodes[i].IsAvailable)
                         {
+                            Console.WriteLine("Nodo apagado: " + i + 1);
                             cliente.SendIsAvailabilityNode(i + 1);
                         }
                         else

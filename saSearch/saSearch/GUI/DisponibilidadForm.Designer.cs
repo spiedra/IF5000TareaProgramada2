@@ -1,5 +1,4 @@
-﻿
-namespace saSearch.GUI
+﻿namespace saSearch.GUI
 {
     partial class DisponibilidadForm
     {

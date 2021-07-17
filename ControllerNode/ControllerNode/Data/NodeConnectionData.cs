@@ -29,7 +29,7 @@ namespace ControllerNode.Data
         /// </summary>
         public void DeleteNodes()
         {
-            string commandText = "dbo.sp_DELETE_NODES";
+            string commandText = "dbo.sp_BORRAR_NODOS";
             this.InitSqlClientComponents(commandText);
             this.ExecuteNonQuery();
         }
@@ -40,7 +40,7 @@ namespace ControllerNode.Data
         /// <param name="directory">Directorio del nodo</param>
         public void RegisterNode(string directory)
         {
-            string paramDirectory = "@param_DIRECTORIO", commandText = "dbo.sp_INSERT_NODE";
+            string paramDirectory = "@param_DIRECTORIO", commandText = "dbo.sp_INSERTAR_NODOS";
             this.InitSqlClientComponents(commandText);
             this.CreateParameter(paramDirectory, SqlDbType.VarChar, directory);
             this.ExecuteNonQuery();

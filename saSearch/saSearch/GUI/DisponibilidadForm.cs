@@ -71,7 +71,6 @@ namespace saSearch.GUI
         public int getOffNode()
         {
             c.Send("isAvailable*");
-            
             return Convert.ToInt32(c.Receive());
         }
 
@@ -87,6 +86,7 @@ namespace saSearch.GUI
             {
                 this.nodoSingleton.EsNodoApagado = false;
                 aux.Checked = true;
+                c.Send("setAvailability*" + true + "*" + aux.Name);
             }
             else if (this.nodoSingleton.EsNodoApagado && aux.Checked)
             {
@@ -97,7 +97,7 @@ namespace saSearch.GUI
                 this.nodoSingleton.EsNodoApagado = true;
                 aux.Checked = false;
                 MessageBox.Show("Nodo: " + aux.Name + " apagado");
-                //c.Send("apagar*"+i);
+                c.Send("setAvailability*" + false + "*" + aux.Name);
             }
         }
     }

@@ -173,11 +173,13 @@ namespace ControllerNode.Utility
         /// <returns>Lista de arreglos de bytes</returns>
         public static List<byte[]> GetListBufferMetaData(string message, int cantNodes, string fileName)
         {
+            string lastAccess = SplitTheClientRequest(message, 2), lastModify = SplitTheClientRequest(message, 3), size = SplitTheClientRequest(message, 4);
+            Console.WriteLine("\nLos metadatos del archivo son:\n" + "Ultimo acceso: " + lastAccess + "\nUltima modificación: " + lastModify + "\nTamaño: " + size);
             return GetListByteArrays(CommonMethod.GetMetaDataBuffer(new string[] {
                              fileName
-                           , SplitTheClientRequest(message, 2)
-                           , SplitTheClientRequest(message, 3)
-                           , SplitTheClientRequest(message, 4)
+                           , lastAccess
+                           , lastModify
+                           , size
                     }), cantNodes);
         }
     }

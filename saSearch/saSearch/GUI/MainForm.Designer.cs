@@ -73,7 +73,6 @@ namespace saSearch
             this.toolStripConfig.Name = "toolStripConfig";
             this.toolStripConfig.Size = new System.Drawing.Size(67, 24);
             this.toolStripConfig.Text = "&Config";
-            this.toolStripConfig.Click += new System.EventHandler(this.toolStripConfig_Click);
             // 
             // toolStripMenuCantidad
             // 
@@ -101,7 +100,6 @@ namespace saSearch
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu principal";
-            this.Load += new System.EventHandler(this.mainForm_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);

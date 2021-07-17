@@ -34,6 +34,7 @@ namespace Node.MyNode
             c.Send("setId*2");
             t = new Thread(this.Escucha);
             t.Start();
+            Console.WriteLine("Conectado al controllerNode");
         }
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace Node.MyNode
                         case "saveFragment":
                             string fragmentName = MyUtility.SplitTheClientRequest(message, 1);
                             string nodeName = MyUtility.SplitTheClientRequest(message, 2);
+                            Thread.Sleep(30);
                             Byte[] fragmentFile = Encoding.ASCII.GetBytes(c.Receive());
                             SaveFileNode(nodeName, fragmentName, fragmentFile);
                             break;
@@ -62,6 +64,7 @@ namespace Node.MyNode
                         case "saveMetaDataFile":
                             string FileName = MyUtility.SplitTheClientRequest(message, 1);
                             nodeName = MyUtility.SplitTheClientRequest(message, 2);
+                            Thread.Sleep(30); // problemas de sincronizacion 
                             Byte[] metaFile = Encoding.ASCII.GetBytes(c.Receive());
                             SaveFileNode(nodeName, FileName, metaFile);
                             break;
@@ -69,8 +72,9 @@ namespace Node.MyNode
                         case "saveParity":
                             string ParityName = MyUtility.SplitTheClientRequest(message, 1);
                             nodeName = MyUtility.SplitTheClientRequest(message, 2);
+                            Thread.Sleep(30);
                             Byte[] parityFile = Encoding.ASCII.GetBytes(c.Receive());
-                            SaveFileNode(nodeName, ParityName, parityFile);
+                            SaveFileParity(nodeName, ParityName, parityFile);
                             break;
 
                         case "getFragment":
@@ -108,12 +112,17 @@ namespace Node.MyNode
         /// </summary>
         private static void RestoreNode(int nodeNumber)
         {
+            Console.WriteLine("Restaurando el nodo: " + nodeNumber);
             string directory = @"../../../Nodes/Node" + nodeNumber;
+            string parityDirectory = directory+"/Parity";
             if (Directory.Exists(directory))
             {
+                Console.WriteLine("Eliminando el directorio: " + directory);
                 System.IO.Directory.Delete(directory, true);
             }
+            Console.WriteLine("Creando el directorio: " + directory);
             Directory.CreateDirectory(directory);
+            Directory.CreateDirectory(parityDirectory);
         }
 
         /// <summary>
@@ -124,7 +133,24 @@ namespace Node.MyNode
         /// </summary>
         private static void SaveFileNode(string nodeName, string fileName, Byte[] bytes)
         {
+            Console.WriteLine("Guardando el fragmento del archivo: " + fileName + " en el nodo: " + nodeName);
             string rutaNombreArchivo = @"../../../Nodes/" + nodeName + "/" + fileName;
+            using var newFile = new FileStream(rutaNombreArchivo, FileMode.Create, FileAccess.Write);
+            newFile.Write(bytes, 0, bytes.Length);
+            newFile.Flush();
+            newFile.Close();
+        }
+
+        /// <summary>
+        /// 
+        /// <param name="nodeName">Nombre de nodo a buscar</param>
+        /// <param name="fileName">Nombre de archivo a buscar</param>
+        /// <param name="bytes">Archivo en bytes</param>
+        /// </summary>
+        private static void SaveFileParity(string nodeName, string fileName, Byte[] bytes)
+        {
+            Console.WriteLine("Guardando el fragmento de paridad del archivo: " + fileName + " en el nodo: " + nodeName);
+            string rutaNombreArchivo = @"../../../Nodes/"+nodeName+"/Parity/" + "/" + fileName;
             using var newFile = new FileStream(rutaNombreArchivo, FileMode.Create, FileAccess.Write);
             newFile.Write(bytes, 0, bytes.Length);
             newFile.Flush();

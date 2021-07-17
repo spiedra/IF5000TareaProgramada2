@@ -14,12 +14,12 @@ namespace saSearch
 {
     public partial class mainForm : Form
     {
-        Cliente c;
+        readonly Cliente c;
         public mainForm()
         {
             c = Cliente.GetSingletonCliente();
-            //c.Start();
-            //c.Send("setId*1");
+            c.Start();
+            c.Send("setId*1");
             InitializeComponent();
         }
   
@@ -29,20 +29,10 @@ namespace saSearch
             verArchivosForm.Show();
         }
 
-        private void toolStripConfig_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void toolStripSubir_Click(object sender, EventArgs e)
         {
             SubirArchivoForm form = new();
             form.Show();
-        }
-
-        private void mainForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void toolStripMenuDisponibilidad_Click(object sender, EventArgs e)

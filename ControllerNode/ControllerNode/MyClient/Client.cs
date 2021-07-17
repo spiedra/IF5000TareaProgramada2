@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace ControllerNode.MyClient
 {
@@ -19,6 +20,8 @@ namespace ControllerNode.MyClient
         /// </summary>
         public bool IsAvailable { get; set; }
 
+        public string name { get; set; }
+
         /// <summary>
         /// Constructor por defecto de la clase <b>MyClient</b>
         /// </summary>
@@ -36,7 +39,9 @@ namespace ControllerNode.MyClient
         /// <param name="nodeName">Nombre del nodo en donde se van a guardar los fragmentos</param>
         public void SaveFilePartition(byte[] buffer, string fragName, string nodeName)
         {
+            Console.WriteLine("Prueba en saveFilePartition-> Nombre de nodo: " + nodeName);
             Socket.Send(Encoding.ASCII.GetBytes("saveFragment*" + fragName + "*" + nodeName));
+            Thread.Sleep(30);
             Socket.Send(buffer);
         }
 
@@ -49,6 +54,7 @@ namespace ControllerNode.MyClient
         public void SaveParity(byte[] buffer, string fragName, string nodeName)
         {
             Socket.Send(Encoding.ASCII.GetBytes("saveParity*" + fragName + "*" + nodeName));
+            Thread.Sleep(30);
             Socket.Send(buffer);
         }
 
