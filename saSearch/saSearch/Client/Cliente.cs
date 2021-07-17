@@ -9,6 +9,9 @@ using System.Threading;
 
 namespace IF500_tftp_client.Client
 {
+    /// <summary>
+    /// Clase cliente encargada de comunicarse con el servidor
+    /// </summary>
     class Cliente
     {
         IPHostEntry host;
@@ -25,7 +28,10 @@ namespace IF500_tftp_client.Client
             endPoint = new IPEndPoint(ipAddr, port);
             s_Client = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
         }
-
+        /// <summary>
+        /// Obtiene el singleton del cliente
+        /// </summary>
+        /// <returns>Retorna una instancia singleton</returns>
         public static Cliente GetSingletonCliente()
         {
             if (SINGLETONCLIENTE == null)
@@ -34,18 +40,25 @@ namespace IF500_tftp_client.Client
             }
             return SINGLETONCLIENTE;
         }
-
+        /// <summary>
+        /// Empieza la conexion con el socket
+        /// </summary>
         public void Start()
         {
             s_Client.Connect(endPoint);
         }
-
+        /// <summary>
+        /// Cierra conexion con el socket
+        /// </summary>
         public void Close()
         {
             s_Client.Shutdown(SocketShutdown.Both);
             s_Client.Close();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msg"></param>
         public void Send(string msg)
         {
             byte[] byteMsg = Encoding.ASCII.GetBytes(msg);

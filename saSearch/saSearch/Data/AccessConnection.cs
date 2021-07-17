@@ -14,7 +14,10 @@ namespace IF500_tftp_server.Data
         {
             this.ConnectToDatabase();
         }
-
+        /// <summary>
+        /// Conecta a la base de datos segun cadena de conexion
+        /// </summary>
+        /// <returns>Retorna la conexion</returns>
         public object ConnectToDatabase()
         {
             try
@@ -27,7 +30,10 @@ namespace IF500_tftp_server.Data
                 return sqlException.Number;
             }
         }
-
+        /// <summary>
+        /// Obtiene cadena de conexion de la base de datos
+        /// </summary>
+        /// <returns>Retorna cadena de conexion</returns>
         static private string GetConnectionString()
         {
             return "Data Source=163.178.107.10; database=IF5000_tarea2_B95212_B97452; User Id=laboratorios; Password=KmZpo.2796";
