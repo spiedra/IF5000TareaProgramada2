@@ -31,16 +31,19 @@ namespace saSearch.GUI
         {
             this.gbxListaArchivos = new System.Windows.Forms.GroupBox();
             this.dgvListaArchivos = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tamaño = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ult_Modificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ult_modificación = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ult_acceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tamano = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abrir = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tamaño = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ult_Modificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbxListaArchivos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxListaArchivos
@@ -48,7 +51,7 @@ namespace saSearch.GUI
             this.gbxListaArchivos.Controls.Add(this.dgvListaArchivos);
             this.gbxListaArchivos.Location = new System.Drawing.Point(13, 13);
             this.gbxListaArchivos.Name = "gbxListaArchivos";
-            this.gbxListaArchivos.Size = new System.Drawing.Size(749, 300);
+            this.gbxListaArchivos.Size = new System.Drawing.Size(795, 317);
             this.gbxListaArchivos.TabIndex = 2;
             this.gbxListaArchivos.TabStop = false;
             this.gbxListaArchivos.Text = "Lista de archivos subidos";
@@ -62,34 +65,13 @@ namespace saSearch.GUI
             this.Ult_acceso,
             this.tamano,
             this.abrir});
-            this.dgvListaArchivos.Location = new System.Drawing.Point(24, 26);
+            this.dgvListaArchivos.Location = new System.Drawing.Point(65, 26);
             this.dgvListaArchivos.Name = "dgvListaArchivos";
             this.dgvListaArchivos.RowHeadersWidth = 51;
             this.dgvListaArchivos.RowTemplate.Height = 29;
             this.dgvListaArchivos.Size = new System.Drawing.Size(701, 268);
             this.dgvListaArchivos.TabIndex = 0;
             this.dgvListaArchivos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaArchivos_CellContentClick);
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "FileName";
-            this.Name.MinimumWidth = 6;
-            this.Name.Name = "Name";
-            this.Name.Width = 125;
-            // 
-            // Tamaño
-            // 
-            this.Tamaño.HeaderText = "Tamaño";
-            this.Tamaño.MinimumWidth = 6;
-            this.Tamaño.Name = "Tamaño";
-            this.Tamaño.Width = 125;
-            // 
-            // Ult_Modificacion
-            // 
-            this.Ult_Modificacion.HeaderText = "Ult.Modificación";
-            this.Ult_Modificacion.MinimumWidth = 6;
-            this.Ult_Modificacion.Name = "Ult_Modificacion";
-            this.Ult_Modificacion.Width = 125;
             // 
             // Nombre
             // 
@@ -128,18 +110,59 @@ namespace saSearch.GUI
             this.abrir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.abrir.Width = 125;
             // 
+            // Name
+            // 
+            this.Name.HeaderText = "FileName";
+            this.Name.MinimumWidth = 6;
+            this.Name.Name = "Name";
+            this.Name.Width = 125;
+            // 
+            // Tamaño
+            // 
+            this.Tamaño.HeaderText = "Tamaño";
+            this.Tamaño.MinimumWidth = 6;
+            this.Tamaño.Name = "Tamaño";
+            this.Tamaño.Width = 125;
+            // 
+            // Ult_Modificacion
+            // 
+            this.Ult_Modificacion.HeaderText = "Ult.Modificación";
+            this.Ult_Modificacion.MinimumWidth = 6;
+            this.Ult_Modificacion.Name = "Ult_Modificacion";
+            this.Ult_Modificacion.Width = 125;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(92, 26);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(626, 240);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Location = new System.Drawing.Point(13, 356);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(795, 289);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Contenido del archivo";
+            // 
             // VerArchivosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 328);
+            this.ClientSize = new System.Drawing.Size(838, 658);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbxListaArchivos);
-           // this.Name = "VerArchivosForm";
+            this.Name = "VerArchivosForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver archivos";
             this.gbxListaArchivos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArchivos)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -156,5 +179,7 @@ namespace saSearch.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tamaño;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ult_Modificacion;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
