@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace IF500_tftp_client.Client
+namespace Node.Client
 {
 
     class Cliente

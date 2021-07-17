@@ -21,7 +21,10 @@ namespace IF500_tftp_server.Data
         {
 
         }
-
+        /// <summary>
+        /// Obtener cantidad de nodos en base de datos
+        /// </summary>
+        /// <returns>Retorna cantidad de nodos</returns>
         public int GetNodesCount()
         {
             string commandText = "dbo.sp_OBTENER_CANTIDAD_NODOS";
@@ -32,14 +35,19 @@ namespace IF500_tftp_server.Data
             this.sqlConnection.Close();
             return cantidad;
         }
-
+        /// <summary>
+        /// Inicializa componentes sql
+        /// </summary>
+        /// <param name="commandText">comando sql a ejecutar</param>
         private void InitSqlClientComponents(string commandText)
         {
             AccessConnection accessConnection = new AccessConnection();
             this.sqlConnection = (SqlConnection)accessConnection.ConnectToDatabase();
             this.sqlCommand = new SqlCommand(commandText, this.sqlConnection);
         }
-
+        /// <summary>
+        /// Ejecuta el comando y el lector de la conexion
+        /// </summary>
         private void ExecuteConnectionCommands()
         {
             this.sqlConnection.Open();

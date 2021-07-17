@@ -22,7 +22,7 @@ namespace saSearch
             //c.Send("setId*1");
             InitializeComponent();
         }
-
+  
         private void toolStripVer_Click(object sender, EventArgs e)
         {
             VerArchivosForm verArchivosForm = new();

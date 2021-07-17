@@ -1,4 +1,5 @@
 ﻿using System;
+using Node.MyNode;
 
 namespace Node
 {
@@ -6,7 +7,7 @@ namespace Node
     {
         static void Main(string[] args)
         {
-        
+            //MyNode.Node node = new();
         }
     }
 }

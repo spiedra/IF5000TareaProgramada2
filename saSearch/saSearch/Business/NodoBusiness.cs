@@ -16,6 +16,10 @@ namespace saSearch.Business
             this.nodeConnection = new NodeConnectionData();
         }
 
+        /// <summary>
+        /// Obtiene cantidad de nodos
+        /// </summary>
+        /// <returns>Cantidad de nodos</returns>
         public int GetNodeCount()
         {
             return this.nodeConnection.GetNodesCount();
