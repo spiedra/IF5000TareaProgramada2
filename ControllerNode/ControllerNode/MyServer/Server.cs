@@ -295,6 +295,10 @@ namespace ControllerNode.MyServer
             else
             {
                 listNodes.Add(new Client(s_Client));
+                if (nodeBusiness.IsNewConfigFlag() == 1)
+                {
+                    listNodes[nodeBusiness.GetNumberNodes() - 1].RestoreNode(nodeBusiness.GetNumberNodes() - 1);
+                }
             }
         }
 

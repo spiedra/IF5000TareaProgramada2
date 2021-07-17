@@ -134,7 +134,7 @@ namespace ControllerNode.Data
         /// <returns>Devuleve 1 si existe una nuevo configuracion de otra manera 0</returns>
         public int IsNewConfigFlag()
         {
-            string commandText = "";
+            string commandText = "dbo.IS_NEW_CONFIG";
             InitSqlClientComponents(commandText);
             ExcecuteReader();
             return ReadIsNewConfigFlag();
@@ -145,7 +145,7 @@ namespace ControllerNode.Data
         /// </summary>
         public void UpdateCongfigFlag()
         {
-            string commandText = "";
+            string commandText = "dbo.DELETE_REGISTER_CONFIG";
             InitSqlClientComponents(commandText);
             ExecuteNonQuery();
         }

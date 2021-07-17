@@ -95,14 +95,13 @@ namespace ControllerNode.MyClient
             Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString(nodeIndex)));
         }
 
-        public void CreateDirectoryNode(int index)
+        /// <summary>
+        /// Restaura la configuracion (directorios de los nodos) en cada cliente (node)
+        /// </summary>
+        /// <param name="index"></param>
+        public void RestoreNode(int index)
         {
-            Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString("createNode*"+index)));
-        }
-
-        public void DeleteNodeDirectories(int index)
-        {
-            Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString("deleteNode*" + index)));
+            Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString("restoreNode*" + index)));
         }
     }
 }
