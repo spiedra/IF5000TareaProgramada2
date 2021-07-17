@@ -1,12 +1,18 @@
-﻿using System;
+﻿using ControllerNode.MyServer;
 
 namespace ControllerNode
 {
+    /// <summary>
+    /// Clase principal del proyecto
+    /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Hace un llamado al hilo del servido para que se empieze a ejecutar
+        /// </summary>
+        static void Main()
         {
-            Server s = new Server("localhost", 4404);
+            Server s = new("localhost", 4404);
             s.Start();
         }
     }

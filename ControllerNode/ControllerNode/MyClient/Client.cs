@@ -1,17 +1,13 @@
-﻿using IF500_tftp_server.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ControllerNode.Cliente
+namespace ControllerNode.MyClient
 {
     /// <summary>
     /// Clase donde se encuentran todos los metodos para la comunicacion entre servidor-cliente
     /// </summary>
-    class Cliente
+    class Client
     {
         /// <summary>
         /// Contiene la instancia del socket que se asigno en el momento que se hizo conexión 
@@ -24,10 +20,10 @@ namespace ControllerNode.Cliente
         public bool IsAvailable { get; set; }
 
         /// <summary>
-        /// Constructor por defecto de la clase <b>Cliente</b>
+        /// Constructor por defecto de la clase <b>MyClient</b>
         /// </summary>
         /// <param name="socket">Instancia del socket al que el cliente esta conectado</param>
-        public Cliente(Socket socket)
+        public Client(Socket socket)
         {
             this.Socket = socket;
         }
@@ -97,6 +93,16 @@ namespace ControllerNode.Cliente
         public void SendIsAvailabilityNode(int nodeIndex)
         {
             Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString(nodeIndex)));
+        }
+
+        public void CreateDirectoryNode(int index)
+        {
+            Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString("createNode*"+index)));
+        }
+
+        public void DeleteNodeDirectories(int index)
+        {
+            Socket.Send(Encoding.ASCII.GetBytes(Convert.ToString("deleteNode*" + index)));
         }
     }
 }

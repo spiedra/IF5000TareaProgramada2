@@ -4,16 +4,30 @@ using System.Linq;
 using System.IO;
 using System.Text;
 
-namespace IF500_tftp_server.Utility
+namespace ControllerNode.Utility
 {
-    class Utility
+    /// <summary>
+    /// Clase estatica que contienen los metodos comunmente usados para el funcionamiento del sistema
+    /// </summary>
+    static class CommonMethod
     {
+        /// <summary>
+        /// Permite separar la cadena enviada por el cliente
+        /// </summary>
+        /// <param name="request">Mensaje a dividir</param>
+        /// <param name="index">Indice de la pieza de la cadena</param>
+        /// <returns>Devuelve la pieza solicitada de la cadena</returns>
         public static string SplitTheClientRequest(string request, int index)
         {
             string[] messaje = request.Split('*');
             return messaje[index];
         }
 
+        /// <summary>
+        /// Convierte un arreglo de bytes a cadena
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns>Arreglo de bytes convertido a cadena</returns>
         public static string Byte2string(byte[] buffer)
         {
             string message;
@@ -27,6 +41,11 @@ namespace IF500_tftp_server.Utility
             return message;
         }
 
+        /// <summary>
+        /// Crea un directorio en el nodo
+        /// </summary>
+        /// <param name="nodeCount"></param>
+        /// <returns></returns>
         public static string CreateFolderNode(int nodeCount)
         {
             string folderPath = @"../../../Nodes/" + "Node" + nodeCount;
@@ -38,6 +57,10 @@ namespace IF500_tftp_server.Utility
             return null;
         }
 
+        /// <summary>
+        /// Elimina los nodos del
+        /// </summary>
+        /// <param name="nodeCount"></param>
         public static void DeleteDirectories(int nodeCount)
         {
             string folderPath = @"../../../Nodes/" + "Node" + nodeCount;
@@ -47,6 +70,11 @@ namespace IF500_tftp_server.Utility
             }
         }
 
+        /// <summary>
+        /// Convierte los archivos .txt en un arreglo de bytes
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Devulve un archivo .txt convertido en un arreglo de bytes</returns>
         public static byte[] ConvertFileToByteArray(string path)
         {
             using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -55,7 +83,12 @@ namespace IF500_tftp_server.Utility
             return buffer;
         }
 
-        public static List<byte[]> GetAllByteArrays(string pathFileName, List<string> pathList)
+        /// <summary>
+        /// Obtiene todos los arreglos de bytes
+        /// </summary>
+        /// <param name="pathList"></param>
+        /// <returns>Devuelve una lista de bytes</returns>
+        public static List<byte[]> GetAllByteArrays(List<string> pathList)
         {
             List<byte[]> byteList = new();
             foreach (string path in pathList)
@@ -66,6 +99,12 @@ namespace IF500_tftp_server.Utility
             return byteList;
         }
 
+        /// <summary>
+        /// Parte en pedazos un arreglos de bytes segun la cantidad de nodos en el sistema
+        /// </summary>
+        /// <param name="buffer">Archivo convertido en un arreglo de bytes</param>
+        /// <param name="numNodes">Cantidad de nodos en el sistema</param>
+        /// <returns>Devuelve una lista con todos los pedazos del archivo</returns>
         public static List<byte[]> GetListByteArrays(byte[] buffer, int numNodes)
         {
             List<byte[]> listByte = new();
@@ -89,48 +128,11 @@ namespace IF500_tftp_server.Utility
             return listByte;
         }
 
-        public static string GetValidatedDirectoryPath(string directoryPath, int directoryExtesion)
-        {
-            string newDirectoryPath = directoryPath + directoryExtesion;
-            if (!Directory.Exists(newDirectoryPath))
-            {
-                Directory.CreateDirectory(newDirectoryPath);
-            }
-            return newDirectoryPath;
-        }
-
-        public static List<string> CreateFileFragments(List<byte[]> listByte, string fileName)
-        {
-            int count = 0;
-            string pathfileName;
-            List<string> pathList = new();
-            foreach (byte[] b in listByte)
-            {
-                pathfileName = GetValidatedDirectoryPath("***aqui va la ruta raiz***", count) + @"\" + fileName + count + ".txt";
-                using (FileStream newFile = new FileStream(pathfileName, FileMode.Create, FileAccess.Write))
-                {
-                    pathList.Add(pathfileName);
-                    newFile.Write(b, 0, b.Length);
-                    newFile.Flush();
-                    newFile.Close();
-                }
-                count++;
-            }
-            return pathList;
-        }
-
-        public static void CreateParity(List<string> pathList, string nodeDirectoryPath, string fileName)
-        {
-            foreach (string path in pathList)
-            {
-                if (!Directory.Exists(nodeDirectoryPath + @"\paridad")) { Directory.CreateDirectory(nodeDirectoryPath + @"\paridad"); };
-                for (int i = 0; i < pathList.Count; i++)
-                {
-                    File.Copy(path, nodeDirectoryPath + @"\paridad\" + fileName + i + ".txt", true);
-                }
-            }
-        }
-
+        /// <summary>
+        /// Concatena arreglos de bytes
+        /// </summary>
+        /// <param name="listByte">Lista con arreglos de bytes</param>
+        /// <returns>Devuelve un solo arreglo de bytes</returns>
         public static byte[] ConcatByteArrays(List<byte[]> listByte)
         {
             byte[] bytes = Array.Empty<byte>();
@@ -141,14 +143,12 @@ namespace IF500_tftp_server.Utility
             return bytes;
         }
 
-        public static void WriteInsideFile(string directoryPath, string fileName, byte[] byteArray)
-        {
-            using FileStream newFile = new(directoryPath + @"\" + fileName, FileMode.Create, FileAccess.Write);
-            newFile.Write(byteArray, 0, byteArray.Length);
-            newFile.Flush();
-            newFile.Close();
-        }
 
+        /// <summary>
+        /// Convierte un arreglo de cadenas en un arreglo de bytes
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns>Devuelve un arreglo de bytes</returns>
         public static byte[] GetMetaDataBuffer(string[] values)
         {
             string tempFilePath = Path.GetTempFileName();
@@ -164,9 +164,16 @@ namespace IF500_tftp_server.Utility
             return buffer;
         }
 
+        /// <summary>
+        /// Obtiene una lista de arreglos de bytes
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="cantNodes"></param>
+        /// <param name="fileName"></param>
+        /// <returns>Lista de arreglos de bytes</returns>
         public static List<byte[]> GetListBufferMetaData(string message, int cantNodes, string fileName)
         {
-            return GetListByteArrays(Utility.GetMetaDataBuffer(new string[] {
+            return GetListByteArrays(CommonMethod.GetMetaDataBuffer(new string[] {
                              fileName
                            , SplitTheClientRequest(message, 2)
                            , SplitTheClientRequest(message, 3)

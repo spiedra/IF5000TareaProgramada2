@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Cliente\Cliente.cs~RF11d07c6.TMP" />
+    <None Remove="MyClient\Cliente.cs~RF11d07c6.TMP" />
+    <None Remove="Program.cs~RF1e8c965.TMP" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,28 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
-using IF500_tftp_server.Data;
-using System.Drawing;
-using System.IO;
-using IF500_tftp_server.Utility;
 
-namespace IF500_tftp_server.Data
+namespace ControllerNode.Data
 {
+    /// <summary>
+    /// Clase que gestiona toda la parte de los datos
+    /// </summary>
     class NodeConnectionData
     {
+        /// <summary>
+        /// Referencia de SqlCommand
+        /// </summary>
         private SqlCommand sqlCommand;
+
+        /// <summary>
+        /// Referencia de SqlConnection
+        /// </summary>
         private SqlConnection sqlConnection;
+
+        /// <summary>
+        /// Referencia de SqlDataReader
+        /// </summary>
         private SqlDataReader sqlDataReader;
 
-        public NodeConnectionData()
-        {
-
-        }
-
+        /// <summary>
+        /// Metodo que elimina la ruta de los nodos registrados en la base de datos
+        /// </summary>
         public void DeleteNodes()
         {
             string commandText = "dbo.sp_DELETE_NODES";
@@ -30,6 +34,10 @@ namespace IF500_tftp_server.Data
             this.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Registra la ruta de los nodos en la base de datos
+        /// </summary>
+        /// <param name="directory">Directorio del nodo</param>
         public void RegisterNode(string directory)
         {
             string paramDirectory = "@param_DIRECTORIO", commandText = "dbo.sp_INSERT_NODE";
@@ -38,6 +46,10 @@ namespace IF500_tftp_server.Data
             this.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Inserta los nombres de los archivos en la base de datos
+        /// </summary>
+        /// <param name="fileName">Nombre del archivo</param>
         public void InsertFile(string fileName)
         {
             string paramFile = "@param_archivo"
@@ -47,6 +59,10 @@ namespace IF500_tftp_server.Data
             this.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Obtiene la cantidad de nodos registrados en la base de datos
+        /// </summary>
+        /// <returns></returns>
         public int GetNumberNodes()
         {
             string commandText = "dbo.sp_OBTENER_CANTIDAD_NODOS";
@@ -55,6 +71,10 @@ namespace IF500_tftp_server.Data
             return ReadGetNumberNodes();
         }
 
+        /// <summary>
+        /// Obtiene la lista de nombres de los archivos
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetListFile()
         {
             string commandText = "dbo.sp_GET_FILE_NAMES";
@@ -63,6 +83,10 @@ namespace IF500_tftp_server.Data
             return ReadGetListFile();
         }
 
+        /// <summary>
+        /// Lee la respuesta de la base de datos de la solicitud de la lista con los nombres de los archivos
+        /// </summary>
+        /// <returns>Lista con los nombres de los archivos</returns>
         private List<string> ReadGetListFile()
         {
             List<string> listFileNames = new();
@@ -74,6 +98,10 @@ namespace IF500_tftp_server.Data
             return listFileNames;
         }
 
+        /// <summary>
+        /// Lee la respuesta de la base de datos de la solicitud de la cantidad de nodos registrados
+        /// </summary>
+        /// <returns>Cantidad de nodos registrados en la base de datos</returns>
         private int ReadGetNumberNodes()
         {
             this.sqlDataReader.Read();
@@ -81,6 +109,12 @@ namespace IF500_tftp_server.Data
             return this.sqlDataReader.GetInt32(0);
         }
 
+        /// <summary>
+        /// Inserta en la base de datos los fragmentos de los archivos
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="fragmentName"></param>
+        /// <param name="nodeName"></param>
         public void InsertFragment(string fileName, string fragmentName, string nodeName)
         {
             string paramNode = "@param_nodo"
@@ -94,20 +128,66 @@ namespace IF500_tftp_server.Data
             this.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Le pregunta a la base de datos si existe una nueva configuración de sistema
+        /// </summary>
+        /// <returns>Devuleve 1 si existe una nuevo configuracion de otra manera 0</returns>
+        public int IsNewConfigFlag()
+        {
+            string commandText = "";
+            InitSqlClientComponents(commandText);
+            ExcecuteReader();
+            return ReadIsNewConfigFlag();
+        }
+
+        /// <summary>
+        /// Actualiza la bandera que indica si existe una nueva configuración 
+        /// </summary>
+        public void UpdateCongfigFlag()
+        {
+            string commandText = "";
+            InitSqlClientComponents(commandText);
+            ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Lee la respuesta de la base de datos
+        /// </summary>
+        /// <returns>Devuleve 1 si existe una nuevo configuracion de otra manera 0</returns>
+        private int ReadIsNewConfigFlag()
+        {
+            this.sqlDataReader.Read();
+            this.sqlConnection.Close();
+            return this.sqlDataReader.GetInt32(0);
+        }
+
+        /// <summary>
+        /// Inicializa los sql components para la conexion con la base de datos
+        /// </summary>
+        /// <param name="commandText"></param>
         private void InitSqlClientComponents(string commandText)
         {
-            AccessConnection accessConnection = new AccessConnection();
-            this.sqlConnection = (SqlConnection)accessConnection.ConnectToDatabase();
+            this.sqlConnection = (SqlConnection)AccessConnection.ConnectToDatabase();
             this.sqlCommand = new SqlCommand(commandText, this.sqlConnection);
         }
 
+
+        /// <summary>
+        /// Crea parametros para el uso de procedimientos almacenados
+        /// </summary>
+        /// <param name="parameterName"></param>
+        /// <param name="dbType"></param>
+        /// <param name="value"></param>
         private void CreateParameter(string parameterName, SqlDbType dbType, object value)
         {
-            SqlParameter sqlParameter = new SqlParameter(parameterName, dbType);
+            SqlParameter sqlParameter = new(parameterName, dbType);
             sqlParameter.Value = value;
             this.sqlCommand.Parameters.Add(sqlParameter);
         }
 
+        /// <summary>
+        /// Ejecuta consultas sin retorno
+        /// </summary>
         private void ExecuteNonQuery()
         {
             this.sqlConnection.Open();
@@ -116,12 +196,18 @@ namespace IF500_tftp_server.Data
             this.sqlConnection.Close();
         }
 
+        /// <summary>
+        /// Ejecuta consultas con retorno
+        /// </summary>
         private void ExcecuteReader()
         {
             this.ExecuteConnectionCommands();
             this.sqlDataReader = this.sqlCommand.ExecuteReader();
         }
 
+        /// <summary>
+        /// Ejecuta los comandos para la conexión
+        /// </summary>
         private void ExecuteConnectionCommands()
         {
             this.sqlConnection.Open();

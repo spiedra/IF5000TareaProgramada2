@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using IF500_tftp_server.Data;
+using ControllerNode.Data;
 
-namespace IF500_tftp_server.Business
+namespace ControllerNode.Business
 {
     /// <summary>
     /// Clase logica de negocio de la entidad <b>Node</b>
     /// </summary>
     /// <remarks>
-    /// Permite la comunicación entre la capa <b>Data</b> y <b>Server</b> para una apropiada distribución de responsabilidades
+    /// Permite la comunicación entre la capa <b>Data</b> y <b>MyServer</b> para una apropiada distribución de responsabilidades
     /// </remarks>
     class NodeConnectionBusiness
     {
@@ -80,6 +80,23 @@ namespace IF500_tftp_server.Business
         public List<string> GetListFile()
         {
             return this.nodeConnectionData.GetListFile();
+        }
+
+        /// <summary>
+        /// LLama al metodo IsNeConfigFlag de la clase nodeConnectionData
+        /// </summary>
+        /// <returns>Devuelve una bandera indicando si existe o no una nueva configuración</returns>
+        public int IsNewConfigFlag()
+        {
+            return this.nodeConnectionData.IsNewConfigFlag();
+        }
+
+        /// <summary>
+        /// LLama al metodo UpdateConfigFlag de la clase nodeConnectionData 
+        /// </summary>
+        public void UpdateCongfigFlag()
+        {
+            this.nodeConnectionData.UpdateCongfigFlag();
         }
     }
 }
