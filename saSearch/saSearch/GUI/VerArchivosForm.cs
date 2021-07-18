@@ -32,20 +32,6 @@ namespace saSearch.GUI
         private void dgvListaArchivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             c.Send("getFile*" + this.dgvListaArchivos.Rows[e.RowIndex].Cells[0].Value);
-            //Thread.Sleep(30);
-            //string message = c.Receive();
-            //int tamano = Convert.ToInt32(Utility.splitTheClientRequest(message, 1));
-            //this.rtb_contenido.Text = Encoding.Default.GetString(c.ReceiveByteMsg(tamano));
-
-
-            //if (this.files.Count != 0)
-            //{
-            //    this.rtb_contenido.Text = this.files.ElementAt(e.RowIndex);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No hay texto que mostrar");
-            //}
         }
 
         public void escucha()
@@ -75,25 +61,6 @@ namespace saSearch.GUI
                 var error = se.SocketErrorCode;
             }
         }
-
-        //public void ByteArrayToFile(byte[] metaData)
-        //{
-        //    string directory = Path.GetTempFileName();
-        //    try
-        //    {
-        //        using (var fs = new FileStream(directory, FileMode.Open))
-        //        {
-        //            fs.Write(metaData, 0, metaData.Length);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Exception caught in process: {0}", ex);
-        //    }
-        //    this.SetText(directory);
-        //    File.Delete(directory);
-        //}
-
         delegate void SetTextCallback(string text);
         delegate void SetContentCallback(string text);
 
@@ -131,19 +98,5 @@ namespace saSearch.GUI
                 this.rtb_contenido.Text = message;
             }
         }
-
-        //public void PutMetaData()
-        //{
-        //    string FileToRead = Path.GetTempFileName();
-        //    List<string> line = File.ReadLines(FileToRead).ToList();
-        //    int currentRow = this.dgvListaArchivos.Rows.Count - 1;
-        //    //
-        //    this.dgvListaArchivos.Rows.Add(1); //posible error
-        //    this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = line.ElementAt(0);
-        //    this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = line.ElementAt(1);
-        //    this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = line.ElementAt(2);
-        //    this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = line.ElementAt(3);
-        //    //Console.WriteLine(String.Join(Environment.NewLine, line));
-        //}
     }
 }
