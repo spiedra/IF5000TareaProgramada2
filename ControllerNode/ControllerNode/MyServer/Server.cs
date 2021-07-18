@@ -152,7 +152,6 @@ namespace ControllerNode.MyServer
                         listFragments.Add(buffer);
                         break;
 
-
                     case "fragFile":
                         buffer = new byte[Convert.ToInt32(CommonMethod.SplitTheClientRequest(message, 1))];
                         s_Client.Receive(buffer);
@@ -162,9 +161,9 @@ namespace ControllerNode.MyServer
                         break;
 
                     case "parity":
-                        buffer = new byte[30000000];
-                        s_Client.Receive(buffer);
-                        listFragments.Add(buffer);
+                        byte[] bufferp = new byte[Convert.ToInt32(CommonMethod.SplitTheClientRequest(message, 1))];
+                        s_Client.Receive(bufferp);
+                        listFragments.Add(bufferp);
                         break;
 
                     case "cantidadNodos":
@@ -320,7 +319,8 @@ namespace ControllerNode.MyServer
                 {
                     if (!listNodes[j].IsAvailable)
                     {
-                        RequestDataToAvailableNodes(j, "MetaData" + i + listFileNames[i]);
+                        Console.WriteLine("\n++" + listNodes[j].name + " no disponible detectado");
+                        RequestDataToAvailableNodes(j, "MetaData" + j + listFileNames[i]);
                     }
                     else
                     {
@@ -378,7 +378,7 @@ namespace ControllerNode.MyServer
                     {
                         if (!listNodes[j].IsAvailable)
                         {
-                            RequestDataToAvailableNodes(j, listFileNames[i]);
+                            RequestDataToAvailableNodes(j, "Frag" + j + listFileNames[i]);
                         }
                         else
                         {
@@ -405,6 +405,7 @@ namespace ControllerNode.MyServer
             {
                 if (i != index)
                 {
+                    Console.WriteLine("++Obteniendo paridad de" + fileName + " en el nodo " + i);
                     listNodes[i].RequesFragmentToNode("getParity", fileName, i);
                 }
             }

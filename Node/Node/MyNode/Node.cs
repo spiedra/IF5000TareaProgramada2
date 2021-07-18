@@ -89,8 +89,9 @@ namespace Node.MyNode
                         case "getParity":
                             nodeName = MyUtility.SplitTheClientRequest(message, 1);
                             string parityName = MyUtility.SplitTheClientRequest(message, 2);
-                            c.Send("parity*");
-                            c.SendBytesMsg(GetParity(nodeName, parityName));
+                            byte[] bufferParity = GetParity(nodeName, parityName);
+                            c.Send("parity*"+bufferParity.Length);
+                            c.SendBytesMsg(bufferParity);
                             break;
 
                         case "getMetaData":
