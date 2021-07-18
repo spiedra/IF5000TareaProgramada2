@@ -70,9 +70,9 @@ namespace IF500_tftp_client.Client
             s_Client.Send(byteMsg);
         }
 
-        public byte[] ReceiveByteMsg()
+        public byte[] ReceiveByteMsg(int length)
         {
-            byte[] buffer = new byte[30000000];
+            byte[] buffer = new byte[length];
             s_Client.Receive(buffer);
             return buffer;
         }

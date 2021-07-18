@@ -53,38 +53,38 @@ namespace saSearch.GUI
                     switch (Utility.splitTheClientRequest(message, 0))
                     {
                         case "metaDataResponse":
-                            this.ByteArrayToFile(c.ReceiveByteMsg());
+                            this.SetText(Encoding.Default.GetString(c.ReceiveByteMsg(Convert.ToInt32(Utility.splitTheClientRequest(message, 1)))));
                             break;
 
                         case "fileResponse":
-                            this.files.Add(Encoding.Default.GetString(c.ReceiveByteMsg()));
+                            //this.files.Add(Encoding.Default.GetString(c.ReceiveByteMsg()));
                             break;
                     }
                 }
             }
-             catch (SocketException se)
+            catch (SocketException se)
             {
                 var error = se.SocketErrorCode;
             }
         }
 
-        public void ByteArrayToFile(byte[] byteArray)
-        {
-            string tempPath = Path.GetTempFileName();
-            try
-            {
-                using (var fs = new FileStream(Path.GetTempFileName(), FileMode.Open))
-                {
-                    fs.Write(byteArray, 0, byteArray.Length);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception caught in process: {0}", ex);
-            }
-            this.SetText(Path.GetTempFileName());
-            File.Delete(tempPath);
-        }
+        //public void ByteArrayToFile(byte[] metaData)
+        //{
+        //    string directory = Path.GetTempFileName();
+        //    try
+        //    {
+        //        using (var fs = new FileStream(directory, FileMode.Open))
+        //        {
+        //            fs.Write(metaData, 0, metaData.Length);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Exception caught in process: {0}", ex);
+        //    }
+        //    this.SetText(directory);
+        //    File.Delete(directory);
+        //}
 
         delegate void SetTextCallback(string text);
 
@@ -97,14 +97,16 @@ namespace saSearch.GUI
             }
             else
             {
-                List<string> line = File.ReadLines(message).ToList();
                 int currentRow = this.dgvListaArchivos.Rows.Count - 1;
                 //
+               // List<string> list = File.ReadLines(message).ToList();
+                string[] metaData = message.Split(' ');
+
                 this.dgvListaArchivos.Rows.Add(1); //posible error
-                 this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = "jajja";
-                this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = line.ElementAt(1);
-                this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = line.ElementAt(2);
-                this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = line.ElementAt(3);
+                this.dgvListaArchivos.Rows[currentRow].Cells[0].Value =metaData[0];
+                this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = metaData[1] + metaData[2];
+                this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = metaData[3]+ metaData[4];
+                this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = metaData[5];
             }
         }
 

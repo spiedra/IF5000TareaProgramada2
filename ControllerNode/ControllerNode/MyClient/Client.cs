@@ -92,7 +92,7 @@ namespace ControllerNode.MyClient
         /// <param name="protocol">Protocolo por donde el saSearch va a recibir los datos</param>
         public void SendTheRequestedToSaSearch(byte[] buffer, string protocol)
         {
-            Socket.Send(Encoding.ASCII.GetBytes(protocol + "*"));
+            Socket.Send(Encoding.ASCII.GetBytes(protocol + "*"+buffer.Length));
             Thread.Sleep(30);
             Console.WriteLine("Tamaño de buffer enviado al saSearch: " + buffer.Length);
             Socket.Send(buffer);

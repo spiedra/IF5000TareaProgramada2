@@ -30,11 +30,11 @@ namespace saSearch.GUI
         {
             Byte[] bytes = Utility.ConvertFileToByteArray(fileDirectory);
             c.Send("archivo*" + name + "*" + tamano);//envio
-            Thread.Sleep(30);
+            Thread.Sleep(30);   
             c.sendBytesMsg(bytes);
             //
             Thread.Sleep(800);
-            c.Send("infoArchivo*" + name + "*" + ult_acceso + "*" + ult_mod + "*" + tamano);
+            c.Send("infoArchivo*" + name + " *" + ult_acceso + " *" + ult_mod + "* " + tamano);
             //
         }
 
