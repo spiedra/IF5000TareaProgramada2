@@ -31,14 +31,21 @@ namespace saSearch.GUI
 
         private void dgvListaArchivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.files.Count != 0)
-            {
-                this.rtb_contenido.Text = this.files.ElementAt(e.RowIndex);
-            }
-            else
-            {
-                MessageBox.Show("No hay texto que mostrar");
-            }
+            c.Send("getFile*" + this.dgvListaArchivos.Rows[e.RowIndex].Cells[0].Value);
+            //Thread.Sleep(30);
+            //string message = c.Receive();
+            //int tamano = Convert.ToInt32(Utility.splitTheClientRequest(message, 1));
+            //this.rtb_contenido.Text = Encoding.Default.GetString(c.ReceiveByteMsg(tamano));
+
+
+            //if (this.files.Count != 0)
+            //{
+            //    this.rtb_contenido.Text = this.files.ElementAt(e.RowIndex);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No hay texto que mostrar");
+            //}
         }
 
         public void escucha()
@@ -49,7 +56,7 @@ namespace saSearch.GUI
                 while (true)
                 {
                     String message = c.Receive();
-                    MessageBox.Show(message);
+                    //MessageBox.Show(message);
                     switch (Utility.splitTheClientRequest(message, 0))
                     {
                         case "metaDataResponse":
@@ -57,7 +64,8 @@ namespace saSearch.GUI
                             break;
 
                         case "fileResponse":
-                            //this.files.Add(Encoding.Default.GetString(c.ReceiveByteMsg()));
+                            MessageBox.Show("Archivo recibido");
+                            SetFileContentText(Encoding.Default.GetString(c.ReceiveByteMsg(Convert.ToInt32(Utility.splitTheClientRequest(message, 1)))));
                             break;
                     }
                 }
@@ -87,6 +95,7 @@ namespace saSearch.GUI
         //}
 
         delegate void SetTextCallback(string text);
+        delegate void SetContentCallback(string text);
 
         private void SetText(string message)
         {
@@ -99,14 +108,27 @@ namespace saSearch.GUI
             {
                 int currentRow = this.dgvListaArchivos.Rows.Count - 1;
                 //
-               // List<string> list = File.ReadLines(message).ToList();
+                // List<string> list = File.ReadLines(message).ToList();
                 string[] metaData = message.Split(' ');
 
                 this.dgvListaArchivos.Rows.Add(1); //posible error
-                this.dgvListaArchivos.Rows[currentRow].Cells[0].Value =metaData[0];
+                this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = metaData[0];
                 this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = metaData[1] + metaData[2];
-                this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = metaData[3]+ metaData[4];
+                this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = metaData[3] + metaData[4];
                 this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = metaData[5];
+            }
+        }
+
+        private void SetFileContentText(string message)
+        {
+            if (this.dgvListaArchivos.InvokeRequired)
+            {
+                SetContentCallback d = new SetContentCallback(SetFileContentText);
+                this.Invoke(d, new object[] { message });
+            }
+            else
+            {
+                this.rtb_contenido.Text = message;
             }
         }
 

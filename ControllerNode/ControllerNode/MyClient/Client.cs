@@ -96,6 +96,7 @@ namespace ControllerNode.MyClient
             Thread.Sleep(30);
             Console.WriteLine("Tamaño de buffer enviado al saSearch: " + buffer.Length);
             Socket.Send(buffer);
+            Thread.Sleep(600);
         }
 
         /// <summary>

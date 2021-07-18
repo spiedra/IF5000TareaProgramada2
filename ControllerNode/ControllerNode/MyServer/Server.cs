@@ -130,7 +130,9 @@ namespace ControllerNode.MyServer
                         break;
 
                     case "getFile":
-                        RequestFileFragmentsToNode(s_Client);
+                        Thread.Sleep(30);
+                        Console.WriteLine("\n\n++Solicitando archivo desde el SA Search");
+                        RequestFileFragmentsToNode(s_Client, CommonMethod.SplitTheClientRequest(message, 1));
                         break;
 
                     case "archivo":
@@ -152,9 +154,10 @@ namespace ControllerNode.MyServer
 
 
                     case "fragFile":
-                        buffer = new byte[30000000];
+                        buffer = new byte[Convert.ToInt32(CommonMethod.SplitTheClientRequest(message, 1))];
                         s_Client.Receive(buffer);
                         Console.WriteLine("Ingresando a la lista de fragmentos los pedazos los archivos");
+                        Console.WriteLine("El tamanio del buffer recibido es: " + buffer.Length);
                         listFragments.Add(buffer);
                         break;
 
@@ -361,24 +364,32 @@ namespace ControllerNode.MyServer
         /// Solicita a los nodos los fragmentos de los archivos
         /// </summary>
         /// <param name="s_client">Socket asociado al cliente</param>
-        public void RequestFileFragmentsToNode(Socket s_client)
+        public void RequestFileFragmentsToNode(Socket s_client, string fileName)
         {
             List<string> listFileNames = nodeBusiness.GetListFile();
             for (int i = 0; i < listFileNames.Count; i++)
             {
-                listFragments = new();
-                for (int j = 0; j < listNodes.Count; j++)
+                Console.WriteLine("....Buscando" + fileName + " entre: " + listFileNames[i]);
+                if (listFileNames[i] == fileName)
                 {
-                    if (!listNodes[j].IsAvailable)
+                    Console.WriteLine("***Se ha encontrado el archivo: " + fileName);
+                    listFragments = new();
+                    for (int j = 0; j < listNodes.Count; j++)
                     {
-                        RequestDataToAvailableNodes(j, listFileNames[i]);
+                        if (!listNodes[j].IsAvailable)
+                        {
+                            RequestDataToAvailableNodes(j, listFileNames[i]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("***Solicitando fragmentos de archivo a nodos");
+                            listNodes[j].RequesFragmentToNode("getFragment", "Frag" + j + listFileNames[i], j);
+                        }
                     }
-                    else
-                    {
-                        listNodes[j].RequesFragmentToNode("getFragment", listFileNames[i], i);
-                    }
+                    Thread.Sleep(124);
+                    Console.WriteLine("***Enviando archivo a SA Search");
+                    SendFragmentsToSaSearch(s_client, "fileResponse");
                 }
-                SendFragmentsToSaSearch(s_client, "fileResponse");
             }
         }
 

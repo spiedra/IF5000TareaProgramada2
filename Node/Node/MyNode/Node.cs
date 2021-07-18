@@ -74,15 +74,16 @@ namespace Node.MyNode
                             Console.WriteLine("\n(Case SaveParity) Parity Name: " + ParityName + " nodeName: " + nodeName);
                             //Thread.Sleep(200);
                             Byte[] parityFile = Encoding.ASCII.GetBytes(c.Receive());
-                            Console.WriteLine("\n(Case saveParity) Tamanio del parityFile es: "+parityFile.Length);
+                            Console.WriteLine("\n(Case saveParity) Tamanio del parityFile es: " + parityFile.Length);
                             SaveFileParity(nodeName, ParityName, parityFile);
                             break;
 
                         case "getFragment":
                             nodeName = MyUtility.SplitTheClientRequest(message, 1);
                             fragmentName = MyUtility.SplitTheClientRequest(message, 2);
-                            c.Send("fragFile*");
-                            c.SendBytesMsg(GetFile(nodeName, fragmentName));
+                            byte[] bufferTemp1 = GetFile(nodeName, fragmentName);
+                            c.Send("fragFile*" + bufferTemp1.Length);
+                            c.SendBytesMsg(bufferTemp1);
                             break;
 
                         case "getParity":
@@ -95,9 +96,9 @@ namespace Node.MyNode
                         case "getMetaData":
                             nodeName = MyUtility.SplitTheClientRequest(message, 1);
                             string metaDataName = MyUtility.SplitTheClientRequest(message, 2);
-                            byte[] bufferTemp = GetFile(nodeName, metaDataName);
-                            c.Send("fragMetaData*"+bufferTemp.Length);
-                            c.SendBytesMsg(bufferTemp);
+                            byte[]bufferTemp2 = GetFile(nodeName, metaDataName);
+                            c.Send("fragMetaData*" + bufferTemp2.Length);
+                            c.SendBytesMsg(bufferTemp2);
                             break;
                     }
                 }
@@ -116,7 +117,7 @@ namespace Node.MyNode
         {
             Console.WriteLine("Restaurando el nodo: " + nodeNumber);
             string directory = @"../../../Nodes/Node" + nodeNumber;
-            string parityDirectory = directory+"/Parity";
+            string parityDirectory = directory + "/Parity";
             if (Directory.Exists(directory))
             {
                 Console.WriteLine("Eliminando el directorio: " + directory);
@@ -152,7 +153,7 @@ namespace Node.MyNode
         private static void SaveFileParity(string nodeName, string fileName, Byte[] bytes)
         {
             Console.WriteLine("*** Guardando el fragmento de paridad del archivo: " + fileName + " en el nodo: " + nodeName);
-            string rutaNombreArchivo = @"../../../Nodes/"+nodeName+"/Parity/" + "/" + fileName;
+            string rutaNombreArchivo = @"../../../Nodes/" + nodeName + "/Parity/" + "/" + fileName;
             using var newFile = new FileStream(rutaNombreArchivo, FileMode.Create, FileAccess.Write);
             newFile.Write(bytes, 0, bytes.Length);
             newFile.Flush();
