@@ -29,6 +29,7 @@ namespace ControllerNode.MyClient
         public Client(Socket socket)
         {
             this.Socket = socket;
+            IsAvailable = true;
         }
 
         /// <summary>
@@ -54,7 +55,20 @@ namespace ControllerNode.MyClient
         public void SaveParity(byte[] buffer, string fragName, string nodeName)
         {
             Socket.Send(Encoding.ASCII.GetBytes("saveParity*" + fragName + "*" + nodeName));
-            Thread.Sleep(220);
+            Thread.Sleep(30);
+            Socket.Send(buffer);
+        }
+
+        /// <summary>
+        /// Envia al nodo correspondiente la información necesaria para guardar los fragmentos de los archivos realizando redundancia de datos
+        /// </summary>
+        /// <param name="buffer">Fragmento del archivo</param>
+        /// <param name="fragName">Nombre del fragmento del archivo</param>
+        /// <param name="nodeName">Nombre del nodo en donde se van a guardar los fragmentos</param>
+        public void SaveParityMetaData(byte[] buffer, string fragName, string nodeName)
+        {
+            Socket.Send(Encoding.ASCII.GetBytes("saveParity*" + fragName + "*" + nodeName));
+            Thread.Sleep(30);
             Socket.Send(buffer);
         }
 
@@ -67,6 +81,7 @@ namespace ControllerNode.MyClient
         public void SendMetaDataFileToNode(byte[] buffer, string fileName, string nodeName)
         {
             Socket.Send(Encoding.ASCII.GetBytes("saveMetaDataFile*" + fileName + "*" + nodeName));
+            Thread.Sleep(30);
             Socket.Send(buffer);
         }
 
@@ -78,6 +93,8 @@ namespace ControllerNode.MyClient
         public void SendTheRequestedToSaSearch(byte[] buffer, string protocol)
         {
             Socket.Send(Encoding.ASCII.GetBytes(protocol + "*"));
+            Thread.Sleep(30);
+            Console.WriteLine("Tamaño de buffer enviado al saSearch: " + buffer.Length);
             Socket.Send(buffer);
         }
 
@@ -89,7 +106,9 @@ namespace ControllerNode.MyClient
         /// <param name="index">Indice que permite identificar los archivos</param>
         public void RequesFragmentToNode(string protocol, string fileName, int index)
         {
-            Socket.Send(Encoding.ASCII.GetBytes(protocol + "*Node" + index + "*" + fileName + "MetaData" + index));
+            Console.WriteLine("Solicitando el archivo: " + fileName);
+            Socket.Send(Encoding.ASCII.GetBytes(protocol + "*Node" + index + "*" + fileName));
+            Thread.Sleep(220);
         }
 
         /// <summary>

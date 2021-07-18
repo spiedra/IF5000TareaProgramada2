@@ -24,8 +24,8 @@ namespace saSearch.GUI
         {
             files = new List<string>();
             c = Cliente.GetSingletonCliente();
-            //t = new Thread(this.escucha);
-            //t.Start();
+            t = new Thread(this.escucha);
+            t.Start();
             InitializeComponent();
         }
 
@@ -43,12 +43,13 @@ namespace saSearch.GUI
 
         public void escucha()
         {
+            c.Send("getMetaData*");
             try
             {
                 while (true)
                 {
                     String message = c.Receive();
-
+                    MessageBox.Show(message);
                     switch (Utility.splitTheClientRequest(message, 0))
                     {
                         case "metaDataResponse":
@@ -61,11 +62,12 @@ namespace saSearch.GUI
                     }
                 }
             }
-            catch (SocketException se)
+             catch (SocketException se)
             {
                 var error = se.SocketErrorCode;
             }
         }
+
         public void ByteArrayToFile(byte[] byteArray)
         {
             string tempPath = Path.GetTempFileName();
@@ -80,22 +82,44 @@ namespace saSearch.GUI
             {
                 Console.WriteLine("Exception caught in process: {0}", ex);
             }
-            this.PutMetaData();
+            this.SetText(Path.GetTempFileName());
             File.Delete(tempPath);
         }
 
-        public void PutMetaData()
+        delegate void SetTextCallback(string text);
+
+        private void SetText(string message)
         {
-            string FileToRead = Path.GetTempFileName();
-            List<string> line = File.ReadLines(FileToRead).ToList();
-            int currentRow = this.dgvListaArchivos.Rows.Count - 1;
-            //
-            this.dgvListaArchivos.Rows.Add(1); //posible error
-            this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = line.ElementAt(0);
-            this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = line.ElementAt(1);
-            this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = line.ElementAt(2);
-            this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = line.ElementAt(3);
-            //Console.WriteLine(String.Join(Environment.NewLine, line));
+            if (this.dgvListaArchivos.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { message });
+            }
+            else
+            {
+                List<string> line = File.ReadLines(message).ToList();
+                int currentRow = this.dgvListaArchivos.Rows.Count - 1;
+                //
+                this.dgvListaArchivos.Rows.Add(1); //posible error
+                 this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = "jajja";
+                this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = line.ElementAt(1);
+                this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = line.ElementAt(2);
+                this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = line.ElementAt(3);
+            }
         }
+
+        //public void PutMetaData()
+        //{
+        //    string FileToRead = Path.GetTempFileName();
+        //    List<string> line = File.ReadLines(FileToRead).ToList();
+        //    int currentRow = this.dgvListaArchivos.Rows.Count - 1;
+        //    //
+        //    this.dgvListaArchivos.Rows.Add(1); //posible error
+        //    this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = line.ElementAt(0);
+        //    this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = line.ElementAt(1);
+        //    this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = line.ElementAt(2);
+        //    this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = line.ElementAt(3);
+        //    //Console.WriteLine(String.Join(Environment.NewLine, line));
+        //}
     }
 }

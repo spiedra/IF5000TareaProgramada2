@@ -64,7 +64,6 @@ namespace Node.MyNode
                         case "saveMetaDataFile":
                             string FileName = MyUtility.SplitTheClientRequest(message, 1);
                             nodeName = MyUtility.SplitTheClientRequest(message, 2);
-                            Thread.Sleep(30); // problemas de sincronizacion 
                             Byte[] metaFile = Encoding.ASCII.GetBytes(c.Receive());
                             SaveFileNode(nodeName, FileName, metaFile);
                             break;
@@ -96,8 +95,9 @@ namespace Node.MyNode
                         case "getMetaData":
                             nodeName = MyUtility.SplitTheClientRequest(message, 1);
                             string metaDataName = MyUtility.SplitTheClientRequest(message, 2);
-                            c.Send("fragMetaData*");
-                            c.SendBytesMsg(GetFile(nodeName, metaDataName));
+                            byte[] bufferTemp = GetFile(nodeName, metaDataName);
+                            c.Send("fragMetaData*"+bufferTemp.Length);
+                            c.SendBytesMsg(bufferTemp);
                             break;
                     }
                 }
@@ -135,7 +135,7 @@ namespace Node.MyNode
         /// </summary>
         private static void SaveFileNode(string nodeName, string fileName, Byte[] bytes)
         {
-            Console.WriteLine("Guardando el fragmento del archivo: " + fileName + " en el nodo: " + nodeName);
+            Console.WriteLine("\n+++++Guardando el fragmento del archivo: " + fileName + " en el nodo: " + nodeName);
             string rutaNombreArchivo = @"../../../Nodes/" + nodeName + "/" + fileName;
             using var newFile = new FileStream(rutaNombreArchivo, FileMode.Create, FileAccess.Write);
             newFile.Write(bytes, 0, bytes.Length);

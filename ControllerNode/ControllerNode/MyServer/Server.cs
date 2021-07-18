@@ -122,7 +122,7 @@ namespace ControllerNode.MyServer
                         break;
 
                     case "infoArchivo":
-                        //SendMetaDataBufferToNode(message, nodeBusiness.GetNumberNodes());
+                        SendMetaDataBufferToNode(message, nodeBusiness.GetNumberNodes());
                         break;
 
                     case "getMetaData":
@@ -143,8 +143,10 @@ namespace ControllerNode.MyServer
                         break;
 
                     case "fragMetaData":
-                        buffer = new byte[30000000];
+                        buffer = new byte[Convert.ToInt32(CommonMethod.SplitTheClientRequest(message, 1))];
                         s_Client.Receive(buffer);
+                        Console.WriteLine("Ingresando a la lista de fragmentos los pedazos los meta datos");
+                        Console.WriteLine("El tamanio del buffer recibido es: " + buffer.Length);
                         listFragments.Add(buffer);
                         break;
 
@@ -152,6 +154,7 @@ namespace ControllerNode.MyServer
                     case "fragFile":
                         buffer = new byte[30000000];
                         s_Client.Receive(buffer);
+                        Console.WriteLine("Ingresando a la lista de fragmentos los pedazos los archivos");
                         listFragments.Add(buffer);
                         break;
 
@@ -164,7 +167,6 @@ namespace ControllerNode.MyServer
                     case "cantidadNodos":
                         int cantidadNodos = Convert.ToInt32(CommonMethod.SplitTheClientRequest(message, 1));
                         Console.WriteLine("Cantidad de nodos configurados: " + cantidadNodos);
-                        //DeleteNodes();
                         CreateNodes(cantidadNodos);
                         break;
 
@@ -211,13 +213,17 @@ namespace ControllerNode.MyServer
         /// <param name="cantNodes">Cantidad de nodos</param>
         public void SendMetaDataBufferToNode(string message, int cantNodes)
         {
+            Thread.Sleep(700);
             string fileName = CommonMethod.SplitTheClientRequest(message, 1);
             Console.WriteLine("Recibiendo los meta datos del archivo: " + fileName);
             List<byte[]> listBufferMetaData = CommonMethod.GetListBufferMetaData(message, cantNodes, fileName);
             for (int i = 0; i < listBufferMetaData.Count; i++)
             {
                 listNodes[i].SendMetaDataFileToNode(listBufferMetaData[i], "MetaData" + i + fileName, "Node" + i);
+                Thread.Sleep(40);
             }
+            Thread.Sleep(500);
+            //SendBufferParityMetaDataToNode(listBufferMetaData, fileName);
         }
 
         /// <summary>
@@ -243,16 +249,17 @@ namespace ControllerNode.MyServer
             nodeBusiness.InsertFile(fileName);
             List<byte[]> listBuffersFile = CommonMethod.GetListByteArrays(bufferFile, nodesAmount);
             Console.WriteLine("\nCantidad de pedazos de la lista de buffers file: " + listBuffersFile.Count);
-            //for (int i = 0; i < listBuffersFile.Count; i++)
-            //{
-            //    string fragName = "Frag" + i + fileName, nodeName = "Node" + i;
-            //    Console.WriteLine("\nEnviando el fragmento: " + fragName + " al nodo: " + nodeName);
-            //    nodeBusiness.InsertFragment(fileName, fragName, nodeName);
-            //    Console.WriteLine("\nGuardando fragmento del archivo en el nodo de la lista: " + listNodes[i].name);
-            //    Console.WriteLine("\nTamaño del pedazo " + i + " del archivo es: " + listBuffersFile[i].Length);
-            //    listNodes[i].SaveFilePartition(listBuffersFile[i], fragName, nodeName);
-            //    Thread.Sleep(40);
-            //}
+            for (int i = 0; i < listBuffersFile.Count; i++)
+            {
+                string fragName = "Frag" + i + fileName, nodeName = "Node" + i;
+                Console.WriteLine("\nEnviando el fragmento: " + fragName + " al nodo: " + nodeName);
+                nodeBusiness.InsertFragment(fileName, fragName, nodeName);
+                Console.WriteLine("\nGuardando fragmento del archivo en el nodo de la lista: " + listNodes[i].name);
+                Console.WriteLine("\nTamaño del pedazo " + i + " del archivo es: " + listBuffersFile[i].Length);
+                listNodes[i].SaveFilePartition(listBuffersFile[i], fragName, nodeName);
+                Thread.Sleep(40);
+            }
+            Thread.Sleep(500);
             SendBufferParityToNode(listBuffersFile, fileName);
         }
 
@@ -267,9 +274,29 @@ namespace ControllerNode.MyServer
             {
                 for (int i = 0; i < listBuffersFile.Count; i++)
                 {
-                    Console.WriteLine("\nGuardando la paridad en el nodo: " + listNodes[j].name);
+                    Console.WriteLine("\nGuardando la paridad del archivo en el nodo: " + listNodes[j].name);
                     Console.WriteLine("Paridad -> FragName: " + "Frag" + i + fileName + " Node" + j + " Tamanio del pedazo de paridad: " + listBuffersFile[i].Length);
                     listNodes[j].SaveParity(listBuffersFile[i], "Frag" + i + fileName, "Node" + j);
+                    Thread.Sleep(500);
+                }
+                Thread.Sleep(300);
+            }
+        }
+
+        /// <summary>
+        /// Envia los fragmentos (buffer) de la paridad de los metadatos correspondiente
+        /// </summary>
+        /// <param name="listBuffersFile">Lista de los fragmentos de los archivos</param>
+        /// <param name="fileName">Nombre del archivo</param>
+        private void SendBufferParityMetaDataToNode(List<byte[]> listBuffersFile, string fileName)
+        {
+            for (int j = 0; j < listNodes.Count; j++)
+            {
+                for (int i = 0; i < listBuffersFile.Count; i++)
+                {
+                    Console.WriteLine("\nGuardando la paridad metaData en el nodo: " + listNodes[j].name);
+                    Console.WriteLine("Paridad -> MetaDataName: " + "MetaData" + i + fileName + " Node" + j + " Tamanio del pedazo de paridad metaData: " + listBuffersFile[i].Length);
+                    listNodes[j].SaveParityMetaData(listBuffersFile[i], "MetaData" + i + fileName, "Node" + j);
                     Thread.Sleep(500);
                 }
                 Thread.Sleep(300);
@@ -294,9 +321,11 @@ namespace ControllerNode.MyServer
                     }
                     else
                     {
-                        listNodes[j].RequesFragmentToNode("getMetaData", "MetaData" + i + listFileNames[i], i);
+                        Console.WriteLine("\nSolicitando los meta datos al nodo disponible: " + listNodes[j].name);
+                        listNodes[j].RequesFragmentToNode("getMetaData", "MetaData" + j + listFileNames[i], j);
                     }
                 }
+                Thread.Sleep(124);
                 SendFragmentsToSaSearch(s_client, "metaDataResponse");
             }
         }
@@ -381,6 +410,7 @@ namespace ControllerNode.MyServer
             {
                 if (cliente.Socket.Equals(s_client))
                 {
+                    Console.WriteLine("Enviando lo solicitado al cliente saSearch");
                     cliente.SendTheRequestedToSaSearch(CommonMethod.ConcatByteArrays(listFragments), protocol);
                 }
             }

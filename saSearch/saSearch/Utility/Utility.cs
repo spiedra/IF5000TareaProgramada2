@@ -13,7 +13,7 @@ namespace IF500_tftp_client.Utility
     {
         public static string splitTheClientRequest(string request, int index)
         {
-            string[] messaje = request.Split(';');
+            string[] messaje = request.Split('*');
             return messaje[index];
         }
 
