@@ -34,7 +34,7 @@ namespace saSearch.GUI
             int ancho = this.caja1.Width / 7;
             int alto = this.caja1.Height / 6;
             int nodo = -1;
-            // nodo= this.getOffNode();
+            nodo= this.getOffNode();
             if (this.business.GetNodeCount() == 0)
             {
                 Label mensaje = new Label();

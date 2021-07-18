@@ -77,12 +77,12 @@ namespace saSearch.GUI
                 //
                 // List<string> list = File.ReadLines(message).ToList();
                 string[] metaData = message.Split(' ');
-
                 this.dgvListaArchivos.Rows.Add(1); //posible error
                 this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = metaData[0];
                 this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = metaData[1] + metaData[2];
                 this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = metaData[3] + metaData[4];
                 this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = metaData[5];
+
             }
         }
 
@@ -97,6 +97,11 @@ namespace saSearch.GUI
             {
                 this.rtb_contenido.Text = message;
             }
+        }
+
+        private void VerArchivosForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }
