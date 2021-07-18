@@ -226,7 +226,7 @@ namespace ControllerNode.MyServer
                 Thread.Sleep(40);
             }
             Thread.Sleep(500);
-            //SendBufferParityMetaDataToNode(listBufferMetaData, fileName);
+            SendBufferParityMetaDataToNode(listBufferMetaData, fileName);
         }
 
         /// <summary>
@@ -433,6 +433,7 @@ namespace ControllerNode.MyServer
         /// <param name="s_client">Socket asociado al cliente</param>
         private void IsAvailable(Socket s_client)
         {
+            int nodeNumber = -1;
             foreach (Client cliente in listaClientes)
             {
                 if (cliente.Socket.Equals(s_client))
@@ -442,13 +443,10 @@ namespace ControllerNode.MyServer
                         if (!listNodes[i].IsAvailable)
                         {
                             Console.WriteLine("Nodo apagado: " + i + 1);
-                            cliente.SendIsAvailabilityNode(i + 1);
-                        }
-                        else
-                        {
-                            cliente.SendIsAvailabilityNode(-1);
+                            nodeNumber = i + 1;
                         }
                     }
+                    cliente.SendIsAvailabilityNode(nodeNumber);
                 }
             }
         }
