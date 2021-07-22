@@ -20,6 +20,9 @@ namespace saSearch.GUI
         Cliente c;
         Thread t;
         List<string> files;
+        /// <summary>
+        /// Constructor ver archivos form
+        /// </summary>
         public VerArchivosForm()
         {
             files = new List<string>();
@@ -28,12 +31,19 @@ namespace saSearch.GUI
             t.Start();
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Método que dado un click en ver, carga la info del .txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvListaArchivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             c.Send("getFile*" + this.dgvListaArchivos.Rows[e.RowIndex].Cells[0].Value);
         }
 
+        /// <summary>
+        /// método de thread encargado de escuchar mensajes del servidor
+        /// </summary>
         public void escucha()
         {
             c.Send("getMetaData*");
@@ -64,6 +74,10 @@ namespace saSearch.GUI
         delegate void SetTextCallback(string text);
         delegate void SetContentCallback(string text);
 
+        /// <summary>
+        /// metodo que setea metadatos en tabla
+        /// </summary>
+        /// <param name="message"></param>
         private void SetText(string message)
         {
             if (this.dgvListaArchivos.InvokeRequired)
@@ -86,6 +100,10 @@ namespace saSearch.GUI
             }
         }
 
+        /// <summary>
+        /// metodo que setea contenido del archivo en la caja
+        /// </summary>
+        /// <param name="message"></param>
         private void SetFileContentText(string message)
         {
             if (this.dgvListaArchivos.InvokeRequired)

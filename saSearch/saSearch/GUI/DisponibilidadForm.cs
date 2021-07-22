@@ -19,6 +19,9 @@ namespace saSearch.GUI
         private NodoBusiness business;
         private Cliente c;
         private NodoApagadoSingleton nodoSingleton;
+        /// <summary>
+        /// Constructor de formulario disponibilidad
+        /// </summary>
         public DisponibilidadForm()
         {
             InitializeComponent();
@@ -28,6 +31,9 @@ namespace saSearch.GUI
             this.GenerateCheckBox();
         }
 
+        /// <summary>
+        /// Método que genera checkbox segun la cantidad de nodos existentes
+        /// </summary>
         public void GenerateCheckBox()
         {
             int posx = 10, posy = 30;
@@ -67,7 +73,10 @@ namespace saSearch.GUI
                 posx = posx + ancho;
             }
         }
-
+        /// <summary>
+        /// Método que obtiene el nodo que no está disponible
+        /// </summary>
+        /// <returns></returns>
         public int getOffNode()
         {
             c.Send("isAvailable*");
@@ -78,7 +87,11 @@ namespace saSearch.GUI
         {
 
         }
-
+        /// <summary>
+        /// Método que valida si es posible marcar un check, de ser así, cambia su estado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cb_CheckState(object sender, EventArgs e)
         {
             CheckBox aux = (CheckBox)sender;
