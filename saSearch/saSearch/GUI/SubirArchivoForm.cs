@@ -14,6 +14,10 @@ using System.Windows.Forms;
 
 namespace saSearch.GUI
 {
+
+    /// <summary>
+    /// Clase de form que se encarga de subir los archivos
+    /// </summary>
     public partial class SubirArchivoForm : Form
     {
         private Cliente c;
@@ -25,7 +29,11 @@ namespace saSearch.GUI
             c = Cliente.GetSingletonCliente();
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Método que obtiene el archivo y sus metadatos para poder enviarlo al controller
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_enviar_Click(object sender, EventArgs e)
         {
             Byte[] bytes = Utility.ConvertFileToByteArray(fileDirectory);
@@ -38,6 +46,11 @@ namespace saSearch.GUI
             //
         }
 
+        /// <summary>
+        /// métodos que selecciona archivo a enviar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_seleccionar_archivo_Click(object sender, EventArgs e)
         {
             using OpenFileDialog openFileDialog = new();
@@ -56,7 +69,10 @@ namespace saSearch.GUI
                 string fileContent = reader.ReadToEnd();
             }
         }
-
+        /// <summary>
+        /// Método que pone datos del archivo en los campos
+        /// </summary>
+        /// <param name="fileInfo"></param>
         private void SetFileInfoInTbx(FileInfo fileInfo)
         {
             this.fileDirectory = fileInfo.FullName;

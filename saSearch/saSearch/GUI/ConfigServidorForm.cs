@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace saSearch.GUI
 {
+    /// <summary>
+    /// Clase de form que se encarga de configurar los nodos solicitados
+    /// </summary>
     public partial class ConfigServidorForm : Form
     {
 
@@ -20,6 +23,11 @@ namespace saSearch.GUI
             c = Cliente.GetSingletonCliente();
             InitializeComponent();
         } 
+        /// <summary>
+        /// metodo que envia la cantidd de nodos a utilizar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void btnConfirmCantidad_Click(object sender, EventArgs e)
         {

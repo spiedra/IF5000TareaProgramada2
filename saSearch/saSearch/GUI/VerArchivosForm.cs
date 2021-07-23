@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace saSearch.GUI
 {
+    /// <summary>
+    /// Clase de form para ver archivos 
+    /// </summary>
     public partial class VerArchivosForm : Form
     {
         Cliente c;
