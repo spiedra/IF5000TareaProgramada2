@@ -1,0 +1,181 @@
+\hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente}{}\doxysection{IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente Class Reference}
+\label{class_i_f500__tftp__client_1_1_client_1_1_cliente}\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+
+
+Clase cliente encargada de comunicarse con el servidor  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_ac2891e514ed6a865b3fce86f3804e21f}{Cliente}} (string ip, int port)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase {\bfseries{\mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente}{Cliente}}}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_a23f309f04605f225bdd55cbbb199811d}{Start}} ()
+\begin{DoxyCompactList}\small\item\em Empieza la conexion con el socket \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_a5fad8c285630494d7605972be5c2ec9d}{Close}} ()
+\begin{DoxyCompactList}\small\item\em Cierra conexion con el socket \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_af93dc157aa9d6ec992db93fbc59f466b}{Send}} (string msg)
+\begin{DoxyCompactList}\small\item\em Envia al servidor (Controller\+Node) mensajes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_a7f6a9fd4a06f9a01638cb2434760f587}{Send\+Bytes\+Msg}} (byte\mbox{[}$\,$\mbox{]} byte\+Msg)
+\begin{DoxyCompactList}\small\item\em Envia mensajes al servidor (Controller\+Node) mensajes en formato arreglo de bytes \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_aba620fa454bb51fd288a20c272441fe3}{Receive\+Byte\+Msg}} (int length)
+\begin{DoxyCompactList}\small\item\em Retornar un buffer con el mensaje recibo desde el servidor \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_a35ad3e0f9498d2f210d57cdfc7ece2a0}{Receive}} ()
+\begin{DoxyCompactList}\small\item\em Retornar un buffer con el mensaje recibo desde el servidor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente}{Cliente}} \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_abf0d6edc34766d1bb85c198bc5338f6c}{Get\+Singleton\+Cliente}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el singleton del cliente \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente_ad2a35b4fc6a48e48c62a7ab69ea84f39}{Byte2string}} (byte\mbox{[}$\,$\mbox{]} buffer)
+\begin{DoxyCompactList}\small\item\em Convierte un arreglo de bytes en cadena \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase cliente encargada de comunicarse con el servidor 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_ac2891e514ed6a865b3fce86f3804e21f}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_ac2891e514ed6a865b3fce86f3804e21f}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!Cliente@{Cliente}}
+\index{Cliente@{Cliente}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Cliente()}{Cliente()}}
+{\footnotesize\ttfamily IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Cliente (\begin{DoxyParamCaption}\item[{string}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase {\bfseries{\mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente}{Cliente}}}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_ad2a35b4fc6a48e48c62a7ab69ea84f39}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_ad2a35b4fc6a48e48c62a7ab69ea84f39}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!Byte2string@{Byte2string}}
+\index{Byte2string@{Byte2string}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Byte2string()}{Byte2string()}}
+{\footnotesize\ttfamily static string IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Byte2string (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convierte un arreglo de bytes en cadena 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arreglo de bytes convertido en cadena
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_a5fad8c285630494d7605972be5c2ec9d}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_a5fad8c285630494d7605972be5c2ec9d}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!Close@{Close}}
+\index{Close@{Close}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cierra conexion con el socket 
+
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_abf0d6edc34766d1bb85c198bc5338f6c}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_abf0d6edc34766d1bb85c198bc5338f6c}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!GetSingletonCliente@{GetSingletonCliente}}
+\index{GetSingletonCliente@{GetSingletonCliente}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{GetSingletonCliente()}{GetSingletonCliente()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_i_f500__tftp__client_1_1_client_1_1_cliente}{Cliente}} IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Get\+Singleton\+Cliente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obtiene el singleton del cliente 
+
+\begin{DoxyReturn}{Returns}
+Retorna una instancia singleton
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_a35ad3e0f9498d2f210d57cdfc7ece2a0}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_a35ad3e0f9498d2f210d57cdfc7ece2a0}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!Receive@{Receive}}
+\index{Receive@{Receive}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Receive()}{Receive()}}
+{\footnotesize\ttfamily string IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Receive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retornar un buffer con el mensaje recibo desde el servidor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mensaje recibido del servidor en formato de cadena
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_aba620fa454bb51fd288a20c272441fe3}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_aba620fa454bb51fd288a20c272441fe3}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!ReceiveByteMsg@{ReceiveByteMsg}}
+\index{ReceiveByteMsg@{ReceiveByteMsg}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{ReceiveByteMsg()}{ReceiveByteMsg()}}
+{\footnotesize\ttfamily byte \mbox{[}$\,$\mbox{]} IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Receive\+Byte\+Msg (\begin{DoxyParamCaption}\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+
+Retornar un buffer con el mensaje recibo desde el servidor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mensaje recibido del servidor en formato de arreglo de bytes
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_af93dc157aa9d6ec992db93fbc59f466b}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_af93dc157aa9d6ec992db93fbc59f466b}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!Send@{Send}}
+\index{Send@{Send}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily void IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Send (\begin{DoxyParamCaption}\item[{string}]{msg }\end{DoxyParamCaption})}
+
+
+
+Envia al servidor (Controller\+Node) mensajes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_a7f6a9fd4a06f9a01638cb2434760f587}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_a7f6a9fd4a06f9a01638cb2434760f587}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!SendBytesMsg@{SendBytesMsg}}
+\index{SendBytesMsg@{SendBytesMsg}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{SendBytesMsg()}{SendBytesMsg()}}
+{\footnotesize\ttfamily void IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Send\+Bytes\+Msg (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{byte\+Msg }\end{DoxyParamCaption})}
+
+
+
+Envia mensajes al servidor (Controller\+Node) mensajes en formato arreglo de bytes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte\+Msg} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_i_f500__tftp__client_1_1_client_1_1_cliente_a23f309f04605f225bdd55cbbb199811d}\label{class_i_f500__tftp__client_1_1_client_1_1_cliente_a23f309f04605f225bdd55cbbb199811d}} 
+\index{IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}!Start@{Start}}
+\index{Start@{Start}!IF500\_tftp\_client.Client.Cliente@{IF500\_tftp\_client.Client.Cliente}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void IF500\+\_\+tftp\+\_\+client.\+Client.\+Cliente.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Empieza la conexion con el socket 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+PRIMER SEMESTRE 2021/\+REDES Y COMUNICACIONES DE DATOS/\+Tareas y proyectos/\+Tareas/\+Tarea programada \#2/tarea\+Programada\#2/sa\+Search/sa\+Search/\+Client/Cliente.\+cs\end{DoxyCompactItemize}

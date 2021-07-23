@@ -23,12 +23,12 @@ namespace saSearch.GUI
             c = Cliente.GetSingletonCliente();
             InitializeComponent();
         } 
+
         /// <summary>
         /// metodo que envia la cantidd de nodos a utilizar
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void btnConfirmCantidad_Click(object sender, EventArgs e)
         {
             c.Send("cantidadNodos*" + this.tbxCantidadNodos.Text);
