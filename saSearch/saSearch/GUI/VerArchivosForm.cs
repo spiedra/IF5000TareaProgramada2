@@ -30,7 +30,7 @@ namespace saSearch.GUI
         {
             files = new List<string>();
             c = Cliente.GetSingletonCliente();
-            t = new Thread(this.escucha);
+            t = new Thread(this.Escucha);
             t.Start();
             InitializeComponent();
         }
@@ -44,10 +44,11 @@ namespace saSearch.GUI
             c.Send("getFile*" + this.dgvListaArchivos.Rows[e.RowIndex].Cells[0].Value);
         }
 
+
         /// <summary>
         /// método de thread encargado de escuchar mensajes del servidor
         /// </summary>
-        public void escucha()
+        public void Escucha()
         {
             c.Send("getMetaData*");
             try
@@ -55,7 +56,6 @@ namespace saSearch.GUI
                 while (true)
                 {
                     String message = c.Receive();
-                    //MessageBox.Show(message);
                     switch (Utility.splitTheClientRequest(message, 0))
                     {
                         case "metaDataResponse":
@@ -71,7 +71,7 @@ namespace saSearch.GUI
             }
             catch (SocketException se)
             {
-                var error = se.SocketErrorCode;
+                _ = se.SocketErrorCode;
             }
         }
         delegate void SetTextCallback(string text);
@@ -85,7 +85,7 @@ namespace saSearch.GUI
         {
             if (this.dgvListaArchivos.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(SetText);
+                SetTextCallback d = new(SetText);
                 this.Invoke(d, new object[] { message });
             }
             else
@@ -111,7 +111,7 @@ namespace saSearch.GUI
         {
             if (this.dgvListaArchivos.InvokeRequired)
             {
-                SetContentCallback d = new SetContentCallback(SetFileContentText);
+                SetContentCallback d = new(SetFileContentText);
                 this.Invoke(d, new object[] { message });
             }
             else
