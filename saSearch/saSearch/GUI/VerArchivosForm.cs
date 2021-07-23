@@ -30,7 +30,7 @@ namespace saSearch.GUI
         {
             files = new List<string>();
             c = Cliente.GetSingletonCliente();
-            t = new Thread(this.Escucha);
+            t = new Thread(this.escucha);
             t.Start();
             InitializeComponent();
         }
@@ -43,12 +43,10 @@ namespace saSearch.GUI
         {
             c.Send("getFile*" + this.dgvListaArchivos.Rows[e.RowIndex].Cells[0].Value);
         }
-
-
         /// <summary>
         /// método de thread encargado de escuchar mensajes del servidor
         /// </summary>
-        public void Escucha()
+        public void escucha()
         {
             c.Send("getMetaData*");
             try
