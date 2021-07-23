@@ -1,3 +1,6 @@
+Esta es la nota 2
+Esta es la nota 2
+Esta es la nota 2
 Bievenidos a la universidad de Costa Rica
 Este es un texto de prueba
 Juan Carlos
@@ -23,6 +26,4 @@ TareaProgramada 2
 Redes y comunicaciones de datos
 fin de texto de prueba
 Bievenidos a la universidad de Costa Rica
-Este es un texto de prueba
-Juan Carlos
-y
+E

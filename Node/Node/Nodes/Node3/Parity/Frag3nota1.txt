@@ -1,6 +1,5 @@
-
-Este es un texto de prueba
+e es un texto de prueba
 Juan Carlos
 y
 Randall
-Fin de texto corto
+Fin de texto Esta es la nota 1

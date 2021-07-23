@@ -96,7 +96,7 @@ namespace saSearch.GUI
                 this.dgvListaArchivos.Rows[currentRow].Cells[0].Value = metaData[0];
                 this.dgvListaArchivos.Rows[currentRow].Cells[1].Value = metaData[1] + metaData[2];
                 this.dgvListaArchivos.Rows[currentRow].Cells[2].Value = metaData[3] + metaData[4];
-                this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = metaData[5];
+                this.dgvListaArchivos.Rows[currentRow].Cells[3].Value = metaData[5]+" bytes";
 
             }
         }

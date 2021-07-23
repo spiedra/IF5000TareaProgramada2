@@ -1,10 +1,4 @@
-
-Randall
-TareaProgramada 2
-Redes y comunicaciones de datos
-fin de texto de prueba
-Bievenidos a la universidad de Costa Rica
-Este es un texto de prueba
+ste es un texto de prueba
 Juan Carlos
 y
 Randall
@@ -27,3 +21,10 @@ Randall
 TareaProgramada 2
 Redes y comunicaciones de datos
 fin de texto de prueba
+Bievenidos a la universidad de Costa Rica
+Este es un texto de prueba
+Juan Carlos
+y
+Randall
+TareaProgramada 2
+Redes y comunicaciones de dato
